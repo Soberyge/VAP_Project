@@ -5,7 +5,8 @@ using System.Web;
 
 namespace PrototipoVAP
 {
-    public class Conexion
+    public static class Conexion
     {
+        public static string cstr = @"Data Source=LAPTOP-12NK0P7A\SQLEXPRESS;Initial Catalog=VAP_Project;Integrated Security=True";
     }
 }

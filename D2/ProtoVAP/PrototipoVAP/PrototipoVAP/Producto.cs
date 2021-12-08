@@ -18,6 +18,15 @@ namespace PrototipoVAP
         string imgNegro;
         string imgBlanco;
 
+        public Producto(int id, string concepto, string tipo, int precio, string imgBlanco)
+        {
+            this.id = id;
+            this.concepto = concepto;
+            this.precio = precio;
+            this.tipo = tipo;
+            this.imgBlanco = imgBlanco;
+        }
+
         public Producto(int id, int id2, string concepto, int precio, string tipo, string talla, string color, int cantidad, string imgNegro, string imgBlanco)
         {
             this.id = id;
@@ -51,6 +60,13 @@ namespace PrototipoVAP
 
 
             return guardado;
+        }
+
+        public override string ToString()
+        {
+            
+            string r = id + " " + id2 + " " + concepto + " " + precio + " " + tipo+ " " + talla + " " + color + " " + cantidad + " " + imgNegro + " " + imgBlanco; ;
+            return  r;
         }
     }
 
