@@ -1,0 +1,108 @@
+﻿body {
+    background-color: #ebebeb !important;
+    margin:0 !important;
+}
+
+#navbar {
+    position:fixed;
+    width:100%;
+}
+
+#sidebar-container{
+    margin-top:108px;
+    position:fixed;
+    height: 100%;    
+    overflow:auto;
+}
+
+#sidebar-container .logo{
+    padding: .875rem 1.25rem;
+}
+
+#sidebar-container .logo h4{
+    color:white;
+    font-weight:bold;
+}
+
+#sidebar-container .menu{
+    width: 12rem;
+    text-align:left;
+}
+
+#sidebar-container .menu a{
+    color:white;   
+    text-decoration: none;    
+    display:block;
+}
+
+#sidebar-container .menu a.active{
+    background-color:#110f0f;    
+}
+
+#sidebar-container .menu a:hover:not(.active){
+    background-color:#5a5a5a;    
+}
+
+#logo{
+    width:53px;
+    height:50px;
+}
+
+#sign_off{
+    position:fixed;
+    bottom:0;
+}
+
+.content {
+    margin-left: 12rem;
+    padding: 16px;
+    margin-top:108px;
+}
+
+@media screen and (max-width: 700px){
+    #sidebar-container {
+        width: 100%;        
+        height: auto;
+    }
+
+    #sidebar-container .menu a {
+        float: left;
+        position: relative;
+    }
+
+    #sidebar-container .menu{
+        display:inline;
+    }
+
+    #sidebar-container .logo h4{
+        float:left;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-height: 400px) {
+    #sidebar-container {
+        width: 100%;
+        height: auto;
+    }
+
+    #sidebar-container .menu a {
+        float: left;
+        position: relative;
+    }
+
+    #sidebar-container .menu{
+        display:inline;
+    }
+
+    #sidebar-container .logo h4 {
+        float: left;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
