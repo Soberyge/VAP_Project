@@ -77,8 +77,8 @@
     #sidebar-container .logo h4{
         float:left;
     }
-
     .content {
+        margin-top: 198px;
         margin-left: 0;
     }
 }
@@ -101,8 +101,8 @@
     #sidebar-container .logo h4 {
         float: left;
     }
-
     .content {
+        margin-top: 198px;
         margin-left: 0;
     }
 }
