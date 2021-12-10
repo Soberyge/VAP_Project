@@ -9,7 +9,7 @@
 }
 
 #sidebar-container{
-    margin-top:108px;
+    margin-top: 108px;
     position:fixed;
     height: 100%;    
     overflow:auto;
@@ -59,7 +59,7 @@
     margin-top:108px;
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 991.6px){
     #sidebar-container {
         width: 100%;        
         height: auto;
@@ -78,7 +78,7 @@
         float:left;
     }
     .content {
-        margin-top: 198px;
+/*        margin-top: 198px;*/
         margin-left: 0;
     }
 }
@@ -102,7 +102,7 @@
         float: left;
     }
     .content {
-        margin-top: 198px;
+        /*margin-top: 198px;*/
         margin-left: 0;
     }
 }
