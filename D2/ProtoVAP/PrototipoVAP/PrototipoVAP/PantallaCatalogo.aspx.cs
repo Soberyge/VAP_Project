@@ -24,19 +24,29 @@ namespace PrototipoVAP
             for (int i = 0; i < catalogo.Tables[0].Rows.Count; i++)
             {
                 int id = Convert.ToInt32(catalogo.Tables[0].Rows[i][0]);
-                string concep = catalogo.Tables[0].Rows[i][2].ToString();
+                string concepto = catalogo.Tables[0].Rows[i][2].ToString();
                 string tipo = catalogo.Tables[0].Rows[i][1].ToString();
+                string marca = catalogo.Tables[0].Rows[i][3].ToString();
                 int precio = Convert.ToInt32(catalogo.Tables[0].Rows[i][4]);
-                string imgb = catalogo.Tables[0].Rows[i][5].ToString();
+                byte[] imgb = (byte[])catalogo.Tables[0].Rows[i][5];
+                byte[] imgn = (byte[])catalogo.Tables[0].Rows[i][6];
 
-                p.Add(new Producto(id, concep, tipo, precio, imgb));                
+                p.Add(new Producto(id, concepto, tipo,marca, precio, imgb, imgn));  
+                
             }
 
             //VER PRODUCTOS
             foreach(Producto pro in p)
             {
                 //los 0 o campos vacios es porque no fueron declarados
-                Response.Write(pro.ToString());
+                Response.Write(pro.Id);
+                Response.Write(pro.Concepto);
+                Response.Write(pro.Tipo);
+                Response.Write(pro.Marca);
+                Response.Write(pro.Precio);
+                Response.Write(pro.ImgBlanco.ToString());
+                Response.Write(pro.ImgNegro.ToString());
+
             }
 
         }

@@ -15,6 +15,7 @@ namespace PrototipoVAP
             foreach(Producto p in lista)
             {
 
+
             }
 
             return confirmado;

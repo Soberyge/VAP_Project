@@ -12,22 +12,25 @@ namespace PrototipoVAP
         string concepto;
         int precio;
         string tipo;
+        string marca;
         string talla;
         string color;
         int cantidad;
-        string imgNegro;
-        string imgBlanco;
+        byte[] imgNegro;
+        byte[] imgBlanco;
 
-        public Producto(int id, string concepto, string tipo, int precio, string imgBlanco)
+        public Producto(int id, string concepto, string tipo,string marca, int precio, byte[] imgBlanco, byte[] imgNegro)
         {
             this.id = id;
             this.concepto = concepto;
             this.precio = precio;
             this.tipo = tipo;
+            this.marca = marca;
             this.imgBlanco = imgBlanco;
+            this.ImgNegro = imgNegro;
         }
 
-        public Producto(int id, int id2, string concepto, int precio, string tipo, string talla, string color, int cantidad, string imgNegro, string imgBlanco)
+        public Producto(int id, int id2, string concepto, int precio, string tipo,string marca, string talla, string color, int cantidad, byte[] imgNegro, byte[] imgBlanco)
         {
             this.id = id;
             this.id2 = id2;
@@ -39,6 +42,7 @@ namespace PrototipoVAP
             this.cantidad = cantidad;
             this.imgNegro = imgNegro;
             this.imgBlanco = imgBlanco;
+            this.marca = marca;
         }
 
         public int Id { get => id; set => id = value; }
@@ -46,11 +50,12 @@ namespace PrototipoVAP
         public string Concepto { get => concepto; set => concepto = value; }
         public int Precio { get => precio; set => precio = value; }
         public string Tipo { get => tipo; set => tipo = value; }
+        public string Marca { get => marca; set => tipo = value; }
         public string Talla { get => talla; set => talla = value; }
         public string Color { get => color; set => color = value; }
         public int Cantidad { get => cantidad; set => cantidad = value; }
-        public string ImgNegro { get => imgNegro; set => imgNegro = value; }
-        public string ImgBlanco { get => imgBlanco; set => imgBlanco = value; }
+        public byte[] ImgNegro { get => imgNegro; set => imgNegro = value; }
+        public byte[] ImgBlanco { get => imgBlanco; set => imgBlanco = value; }
 
         
 

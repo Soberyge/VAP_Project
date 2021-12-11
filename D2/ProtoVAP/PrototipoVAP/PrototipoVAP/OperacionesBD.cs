@@ -96,8 +96,9 @@ namespace PrototipoVAP
                     query += " where txt_tipo_prenda = 'playera'";
                     break;
             }
+            query += " where txt_estado_prenda = 'vigente'";
             //0 es decendente, 1 es ascendente
-          //  query += (orden == 0) ? " order by dec_precio_prenda desc" : " order by dec_precio_prenda asc";
+            //  query += (orden == 0) ? " order by dec_precio_prenda desc" : " order by dec_precio_prenda asc";
 
             SqlConnection cnx = new SqlConnection(Conexion.cstr);
             SqlDataAdapter adp = new SqlDataAdapter(query, cnx);
