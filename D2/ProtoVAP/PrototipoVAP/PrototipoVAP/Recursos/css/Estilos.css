@@ -6,6 +6,7 @@
 #navbar {
     position:fixed;
     width:100%;
+    z-index:1;
 }
 
 #sidebar-container{
@@ -13,6 +14,7 @@
     position:fixed;
     height: 100%;    
     overflow:auto;
+    z-index:1;
 }
 
 #sidebar-container .logo{
@@ -57,6 +59,7 @@
     margin-left: 12rem;
     padding: 16px;
     margin-top:108px;
+    z-index:0;
 }
 
 @media screen and (max-width: 991.6px){
@@ -105,18 +108,32 @@
     }
 }
 
-#head-catalogo{
+#head-catalogo {
     padding: 10px;
 }
 
 #head-catalogo #filtros{
     float:left;
+    margin-left: -5px;
 }
 
 #head-catalogo #order_by{
     float:right;
+    margin-right: 16px;
 }
 
 #catalogo{
     margin-top:20px;
+}
+
+.card {
+    float:left;
+    margin: 10px 5px;
+}
+
+#catalogo .card .card-body a:hover {
+    background-color: #37393b;
+}
+#catalogo .card .card-body p,h5{
+    text-align:left !important;
 }

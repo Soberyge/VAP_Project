@@ -11,9 +11,9 @@
                 <button disabled type="button" class="btn btn-primary">Tipo</button>
                 <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
-                    <a class="dropdown-item" href="#">Todo</a>
-                    <a class="dropdown-item" href="#">Sudadera</a>
-                    <a class="dropdown-item" href="#">Playera</a>
+                    <a id="fltTodo" class="dropdown-item" href="#">Todo</a>
+                    <a id="fltSudadera" class="dropdown-item" href="#">Sudadera</a>
+                    <a id="fltPlayera" class="dropdown-item" href="#">Playera</a>
                 </div>
             </div>
         </div>
@@ -24,15 +24,15 @@
                 <button disabled type="button" class="btn btn-primary">Ordenar por</button>
                 <button id="btnGroupDrop2" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <a class="dropdown-item" href="#">Menor precio</a>
-                    <a class="dropdown-item" href="#">Mayor precio</a>
+                    <a id="odbMenor" class="dropdown-item" href="#">Menor precio</a>
+                    <a id="odbMayor" class="dropdown-item" href="#">Mayor precio</a>
                 </div>
             </div>
         </div>        
     </div>
 
     <div id="catalogo">
-
+        <%--CARDS--%>         
     </div>
 
 </asp:Content>
