@@ -52,8 +52,8 @@ C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.AssemblyReference.cache
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.CoreCompileInputs.cache
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.CopyComplete
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.dll
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.pdb
-C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.AssemblyReference.cache

@@ -2,8 +2,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Responsive Sidebar Example</h2>
-    <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
-    <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
-    <h3>Resize the browser window to see the effect.</h3>
+    
+    <div id="head-catalogo" class="row">
+        
+        <%--FILTROS--%>
+        <div class="col-6">
+            <div id="filtros" class="btn-group col-2" role="group">
+                <button disabled type="button" class="btn btn-primary">Tipo</button>
+                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
+                    <a class="dropdown-item" href="#">Todo</a>
+                    <a class="dropdown-item" href="#">Sudadera</a>
+                    <a class="dropdown-item" href="#">Playera</a>
+                </div>
+            </div>
+        </div>
+
+        <%--ORDER BY--%>
+        <div class="col-6">
+            <div id="order_by" class="btn-group" role="group">
+                <button disabled type="button" class="btn btn-primary">Ordenar por</button>
+                <button id="btnGroupDrop2" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#">Menor precio</a>
+                    <a class="dropdown-item" href="#">Mayor precio</a>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <div id="catalogo">
+
+    </div>
+
 </asp:Content>

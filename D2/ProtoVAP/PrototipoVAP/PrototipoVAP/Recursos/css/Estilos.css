@@ -78,7 +78,6 @@
         float:left;
     }
     .content {
-/*        margin-top: 198px;*/
         margin-left: 0;
     }
 }
@@ -102,7 +101,22 @@
         float: left;
     }
     .content {
-        /*margin-top: 198px;*/
         margin-left: 0;
     }
+}
+
+#head-catalogo{
+    padding: 10px;
+}
+
+#head-catalogo #filtros{
+    float:left;
+}
+
+#head-catalogo #order_by{
+    float:right;
+}
+
+#catalogo{
+    margin-top:20px;
 }

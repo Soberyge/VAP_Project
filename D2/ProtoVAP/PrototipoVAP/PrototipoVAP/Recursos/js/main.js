@@ -3,7 +3,6 @@ const navbar = document.getElementById('navbar');
 const sidebar = document.getElementById('sidebar-container');
 const content = document.getElementById('content1');
 
-
 btn_toggle.onclick = () => {
     const heightNavbar = getComputedStyle(navbar).getPropertyValue("height");
     const heightSideBar = getComputedStyle(sidebar).getPropertyValue("height");
@@ -13,7 +12,6 @@ btn_toggle.onclick = () => {
 }
 
 addEventListener('resize', () => {
-    console.log('jk')
     let wnav = getComputedStyle(navbar).getPropertyValue("width");
     wnav = Number(wnav.slice(0, wnav.length - 2));
 
@@ -30,6 +28,4 @@ addEventListener('resize', () => {
         const hContainer = Number(hNavbar.slice(0, hNavbar.length - 2)) + Number(hSideBar.slice(0, hSideBar.length - 2));
         content.style.marginTop = hContainer + "px";
     }
-
-
 })
