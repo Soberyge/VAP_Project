@@ -12,14 +12,18 @@ namespace PrototipoVAP
 
         public static bool ConfirmarCompra(){
             bool confirmado = false;
+            foreach(Producto p in lista)
+            {
 
+            }
 
             return confirmado;
         }
 
-        public static bool EliminarProducto()
+        public static bool EliminarProducto(int indice)
         {
             bool eliminado = false;
+            lista.RemoveAt(indice);
 
             return eliminado;
         }
