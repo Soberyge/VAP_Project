@@ -14,6 +14,8 @@ const colorNegro = document.getElementById('rbNegro');
 const colorBlanco = document.getElementById('rbBlanco');
 const existencias = document.getElementById('existencias');
 const carritoBtn = document.getElementById('btnAgregarCarrito');
+const btnCancelar = document.getElementById('btnCancelarmodal');
+const btnCerrar = document.getElementById('btnCerrarmodal');
 
 let tallaEscogida = "";
 let colorEscogido = "";
@@ -104,39 +106,43 @@ document.attachEvent('click', '.a', function () {
 //Cachando el valor de los radio buttons
 tallaChica.onclick = () => {
     tallaEscogida = "CH";
-    buscarVariacion(tallaEscogida, colorEscogido);
+    buscarVariacion();
 }
 
 tallaMediana.onclick = () => {
     tallaEscogida = "M";
-    buscarVariacion(tallaEscogida, colorEscogido);
+    buscarVariacion();
 }
 
 tallaGrande.onclick = () => {
     tallaEscogida = "G";
-    buscarVariacion(tallaEscogida, colorEscogido);
+    buscarVariacion();
 }
 
 tallaExtraGrande.onclick = () => {
     tallaEscogida = "EG";
-    buscarVariacion(tallaEscogida, colorEscogido);
+    buscarVariacion();
 }
 
 colorNegro.onclick = () => {
     colorEscogido = "negro";
-    buscarVariacion(tallaEscogida, colorEscogido);
+    buscarVariacion();
 }
 
 colorBlanco.onclick = () => {
     colorEscogido = "blanco";
-    buscarVariacion(tallaEscogida, colorEscogido);
+    buscarVariacion();
 }
 
-function buscarVariacion(talla, color) {
-    if (talla && color !== "") {
+function buscarVariacion() {
+    if (tallaEscogida && colorEscogido !== "") {
         const producto = encuentraProducto();
-        const variante = producto.Variantes.find(variant => variant.Talla === talla && variant.Color === color);
-        if (variante === null) existencias.innerHTML = `Sin Existencias`;
+        let variante = producto.Variantes.find(v => v.Talla === tallaEscogida && v.Color === colorEscogido);
+
+        if (variante === undefined) {
+            existencias.innerHTML = `Sin Existencias`;
+            carritoBtn.disabled = true;
+        }            
         else {
             existencias.innerHTML = `Existencias: ${variante.Cantidad}`;
             carritoBtn.disabled = false;
@@ -145,8 +151,18 @@ function buscarVariacion(talla, color) {
     }
 }
 
+function limpiarDatos() {
+    tallaEscogida = "";
+    colorEscogido = "";
+    idVariante = "";
+    existencias.textContent = "";
+}
+
+btnCancelar.onclick = limpiarDatos;
+btnCerrar.onclick = limpiarDatos;
+
 carritoBtn.onclick = () => {
-    
+    limpiarDatos();
 }
 
 //Cargar el catalogo al inicio

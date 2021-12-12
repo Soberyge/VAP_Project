@@ -15,7 +15,7 @@ namespace PrototipoVAP
         private string marca;
         private byte[] imgNegro;
         private byte[] imgBlanco;
-        private Variantes[] variantes;
+        private ArrayList variantes;
 
         public Producto(int id, string concepto, string tipo, string marca, decimal precio, byte[] imgBlanco, byte[] imgNegro)
         {
@@ -28,7 +28,7 @@ namespace PrototipoVAP
             this.ImgNegro = imgNegro;
 
         }
-        public Producto(int id, string concepto, string tipo, string marca, decimal precio, byte[] imgBlanco, byte[] imgNegro, Variantes[] v)
+        public Producto(int id, string concepto, string tipo, string marca, decimal precio, byte[] imgBlanco, byte[] imgNegro, ArrayList v)
         {
             this.id = id;
             this.concepto = concepto;
@@ -47,7 +47,7 @@ namespace PrototipoVAP
         public string Marca { get => marca; set => marca = value; }
         public byte[] ImgNegro { get => imgNegro; set => imgNegro = value; }
         public byte[] ImgBlanco { get => imgBlanco; set => imgBlanco = value; }
-        public Variantes[] Variantes { get => variantes; set => variantes = value; }
+        public ArrayList Variantes { get => variantes; set => variantes = value; }
 
         public bool GuardarProducto()
         {
