@@ -24,9 +24,9 @@ namespace PrototipoVAP
             return eliminado;
         }
 
-        public static int TotalCarrito()
+        public static decimal TotalCarrito()
         {
-            int total = 0;
+            decimal total = 0;
             foreach(Producto p in lista)
             {
                 total += p.Precio;

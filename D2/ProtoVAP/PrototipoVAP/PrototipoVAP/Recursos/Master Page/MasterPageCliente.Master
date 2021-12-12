@@ -34,8 +34,8 @@
             <div class="row collapse navbar-collapse" id="navbarColor01">
                 <div class="navbar-nav me-auto">
                     <div id="divBuscar" class="nav-item col-10 d-flex">
-                        <asp:TextBox runat="server" CssClass="form-control me-sm-2" placeholder="¿Qué estas buscando?"></asp:TextBox>
-                        <asp:LinkButton runat="server" ID="btnBuscar" CssClass="btn btn-secondary" Text="<i class='bi bi-search lead'></i>" />
+                        <asp:TextBox id="txtBusqueda" runat="server" CssClass="form-control me-sm-2" placeholder="¿Qué estas buscando?"></asp:TextBox>
+                        <asp:LinkButton OnClick="btnBuscar_Click" runat="server" ID="btnBuscar" CssClass="btn btn-secondary" Text="<i class='bi bi-search lead'></i>" />
                     </div>
                     <div class="nav-item">
                         <a href="#" class="nav-link text-white">

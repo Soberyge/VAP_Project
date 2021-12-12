@@ -5,9 +5,11 @@ using System.Web;
 
 namespace PrototipoVAP
 {
-    public class Globales
+    public static class Globales
     {
         //cliente logeado
+
+        public static string busqueda = "";
 
     }
 }

@@ -134,6 +134,39 @@
 #catalogo .card .card-body a:hover {
     background-color: #37393b;
 }
+
+#catalogo .card .card-body a{
+    border-radius: 30px;
+}
+
 #catalogo .card .card-body p,h5{
     text-align:left !important;
+}
+
+.col-6 label {
+    border-radius: 30px;
+    padding: 6px 12px;
+}
+
+.col-6 h6, h4, label {
+    text-align: center !important;
+}
+
+.col-6 h4 {
+    font-weight:bold;
+}
+
+.col-6 #rbN {
+    margin-left: 70px;
+    border-radius: 30px;
+    color: black;
+    background-color: black;
+    border: 2px solid black;
+}
+
+.col-6 #rbB {
+    border-radius: 30px;
+    color:white;
+    background-color: white;
+    border: 2px solid black;
 }

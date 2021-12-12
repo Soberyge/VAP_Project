@@ -13,5 +13,11 @@ namespace PrototipoVAP
         {
 
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Globales.busqueda = txtBusqueda.Text;
+            Response.Redirect("Catalogo.aspx");
+        }
     }
 }
