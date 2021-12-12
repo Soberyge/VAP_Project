@@ -4,6 +4,21 @@ const sudadera = document.getElementById('fltSudadera');
 const playera = document.getElementById('fltPlayera');
 const menor = document.getElementById('odbMenor');
 const mayor = document.getElementById('odbMayor');
+const concepto = document.getElementById('modalTyC');
+const precio = document.getElementById('modalPrecio');
+const tallaChica = document.getElementById('rbCH');
+const tallaMediana = document.getElementById('rbM');
+const tallaGrande = document.getElementById('rbG');
+const tallaExtraGrande = document.getElementById('rbEG');
+const colorNegro = document.getElementById('rbNegro');
+const colorBlanco = document.getElementById('rbBlanco');
+const existencias = document.getElementById('existencias');
+const carritoBtn = document.getElementById('btnAgregarCarrito');
+
+let tallaEscogida = "";
+let colorEscogido = "";
+let idProducto = 0;
+let idVariante = "";
 
 let productos_filtrados = productos.slice();    //arreglo con filtros 
 let ordenando = false;  //variable para saber si se esta ordenando el contenido o no
@@ -47,7 +62,7 @@ const renderProducts = (filtrados) => {
 
         catalogo.innerHTML += `
         <div class="card" style="width: 18rem;">
-            <img src="data:image/jpg;base64,${Imagen_Base64}" class="card-img-top" alt="<imagen>">
+            <img src="data:image/jpg;base64,${Imagen_Base64}" class="card-img-top" alt="<image failed>">
             <div class="card-body text-center">
                 <h5 class="card-title">$MXN${producto.Precio}</h5>
                 <p class="card-text">${producto.Tipo} - ${producto.Concepto}</p>
@@ -57,15 +72,17 @@ const renderProducts = (filtrados) => {
         let detallesBtn = document.createElement('a');
         detallesBtn.setAttribute('id', producto.Id);
         detallesBtn.classList.add('a', 'btn', 'btn-primary');
-        detallesBtn.textContent = "Ver detalles";        
-        //detallesBtn.target = "staticBackdrop";
-        //detallesBtn.toggleAttribute("modal");
+        detallesBtn.textContent = "Ver detalles";
+        detallesBtn.setAttribute('data-bs-toggle', 'modal');
+        detallesBtn.setAttribute('data-bs-target', '#staticBackdrop');
         catalogo.children[catalogo.childElementCount - 1].children[1].appendChild(detallesBtn);        
     });
 
     if (!ordenando) productos_filtrados = filtrados.slice();
     else ordenando = false;
 }
+
+function encuentraProducto() { return productos.find(producto => producto.Id == idProducto) };
 
 //Asignación de evento al botón Ver Detalles
 document.attachEvent = function (evt, q, fn) {
@@ -78,8 +95,59 @@ document.attachEvent = function (evt, q, fn) {
 
 //Funcion del evento click del boton Ver Detalles
 document.attachEvent('click', '.a', function () {
-    console.log(this.id);
+    idProducto = this.id;
+    const producto = encuentraProducto();
+    concepto.innerHTML = `${producto.Tipo} - ${producto.Concepto}`;
+    precio.innerHTML = `$MXN${producto.Precio}`;
 });
+
+//Cachando el valor de los radio buttons
+tallaChica.onclick = () => {
+    tallaEscogida = "CH";
+    buscarVariacion(tallaEscogida, colorEscogido);
+}
+
+tallaMediana.onclick = () => {
+    tallaEscogida = "M";
+    buscarVariacion(tallaEscogida, colorEscogido);
+}
+
+tallaGrande.onclick = () => {
+    tallaEscogida = "G";
+    buscarVariacion(tallaEscogida, colorEscogido);
+}
+
+tallaExtraGrande.onclick = () => {
+    tallaEscogida = "EG";
+    buscarVariacion(tallaEscogida, colorEscogido);
+}
+
+colorNegro.onclick = () => {
+    colorEscogido = "negro";
+    buscarVariacion(tallaEscogida, colorEscogido);
+}
+
+colorBlanco.onclick = () => {
+    colorEscogido = "blanco";
+    buscarVariacion(tallaEscogida, colorEscogido);
+}
+
+function buscarVariacion(talla, color) {
+    if (talla && color !== "") {
+        const producto = encuentraProducto();
+        const variante = producto.Variantes.find(variant => variant.Talla === talla && variant.Color === color);
+        if (variante === null) existencias.innerHTML = `Sin Existencias`;
+        else {
+            existencias.innerHTML = `Existencias: ${variante.Cantidad}`;
+            carritoBtn.disabled = false;
+            idVariante = variante.IdVariante;
+        }
+    }
+}
+
+carritoBtn.onclick = () => {
+    
+}
 
 //Cargar el catalogo al inicio
 renderProducts(productos)
