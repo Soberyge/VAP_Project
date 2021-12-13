@@ -79,7 +79,6 @@
     <Content Include="Perfil.aspx" />
     <Content Include="Recursos\css\Estilos.css" />
     <Content Include="Recursos\Iconos\VAP_Logo.ico" />
-    <Content Include="NewFolder1\VAP_Logo.png" />
     <Content Include="Recursos\js\Carrito.js" />
     <Content Include="Recursos\js\Catalogo.js" />
     <Content Include="Recursos\js\Inventario.js" />

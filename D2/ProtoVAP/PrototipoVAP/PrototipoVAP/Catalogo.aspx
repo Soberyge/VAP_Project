@@ -46,24 +46,24 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-6">
-                            <img id="modalImg" src="Recursos/Imagenes/VAP_Logo.png" class="img-fluid" alt="<imagen>">
+                            <img id="modalImg" src="#" class="img-fluid" alt="<imagen>">
                         </div>
                         <div class="col-6">
                             <h6 id="modalTyC"></h6>
                             <h4 id="modalPrecio" style="margin-bottom:30px;"></h4>
-                            <input type="radio" class="btn-check talla" name="options1" id="rbCH" autocomplete="off">
-                            <label class="btn btn-dark" style="margin-left:20px;" for="rbCH">CH</label>
-                            <input type="radio" class="btn-check talla" name="options1" id="rbM" autocomplete="off">
-                            <label class="btn btn-dark" for="rbM">M</label>
-                            <input type="radio" class="btn-check talla" name="options1" id="rbG" autocomplete="off">
-                            <label class="btn btn-dark" for="rbG">G</label>
-                            <input type="radio" class="btn-check talla" name="options1" id="rbEG" autocomplete="off">
-                            <label class="btn btn-dark" for="rbEG">EG</label>
+                            <input type="radio" class="btn-check" name="talla" id="rbCH" autocomplete="off">
+                            <label id="rbChico" class="radioTalla" for="rbCH">CH</label>
+                            <input type="radio" class="btn-check" name="talla" id="rbM" autocomplete="off">
+                            <label id="rbMediano" class="radioTalla" for="rbM">M</label>
+                            <input type="radio" class="btn-check" name="talla" id="rbG" autocomplete="off">
+                            <label id="rbGrande" class="radioTalla" for="rbG">G</label>
+                            <input type="radio" class="btn-check" name="talla" id="rbEG" autocomplete="off">
+                            <label id="rbExtraGrande" class="radioTalla" for="rbEG">EG</label>
                             <h6 style="margin-top:30px;">Color</h6>
-                            <input type="radio" class="btn-check color" name="options2" id="rbNegro" autocomplete="off">
-                            <label id="rbN" class="btn color" for="rbNegro">N</label>
-                            <input type="radio" class="btn-check color" name="options2" id="rbBlanco" autocomplete="off">
-                            <label id="rbB" class="btn" for="rbBlanco">B</label>
+                            <input type="radio" class="btn-check color" name="color" id="rbNegro" autocomplete="off">
+                            <label id="rbN" for="rbNegro">N</label>
+                            <input type="radio" class="btn-check color" name="color" id="rbBlanco" autocomplete="off">
+                            <label id="rbB" for="rbBlanco">B</label>
                             <h6 id="existencias" style="margin-top:30px;"></h6>
                         </div>
                     </div>

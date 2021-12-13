@@ -14,51 +14,51 @@ namespace PrototipoVAP
 
         }
 
-        //public void GuardarProducto()
+        //public void guardarproducto()
         //{
         //    bool okb = false;
         //    bool okn = false;
-        //    if (fluBlanca.HasFile && fluNegra.HasFile)//controladores
+        //    if (flublanca.hasfile && flunegra.hasfile)//controladores
         //    {
-        //        string extencionB = System.IO.Path.GetExtension(fluBlanca.FileName);
-        //        extencionB = extencionB.ToLower();
-        //        if (extencionB == ".png"  extencionB == ".jpeg")
+        //        string extencionb = system.io.path.getextension(flublanca.filename);
+        //        extencionb = extencionb.tolower();
+        //        if (extencionb == ".png"  extencionb == ".jpeg")
         //        {
         //            okb = true;
         //        }
         //        else
-        //        { lblBlanca.Text = "formato incorrecto"; }//mensaje
+        //        { lblblanca.text = "formato incorrecto"; }//mensaje
 
-        //        string extencionN = System.IO.Path.GetExtension(fluNegra.FileName);
-        //        extencionN = extencionN.ToLower();
-        //        if (extencionN == ".png"  extencionN == ".jpeg")
+        //        string extencionn = system.io.path.getextension(flunegra.filename);
+        //        extencionn = extencionn.tolower();
+        //        if (extencionn == ".png"  extencionn == ".jpeg")
         //        {
         //            okn = true;
         //        }
         //        else
-        //        { lblNegra.Text = "formato incorrecto"; }
+        //        { lblnegra.text = "formato incorrecto"; }
 
         //        if (okb && okn)
         //        {
-        //            string imgBlanca = "~/Imagenes/" + txtTipo.Text + txtConcepto.Text + txtMarca.Text + "Blanco" + extencionB;
-        //            fluBlanca.SaveAs(Server.MapPath(imgBlanca));
+        //            string imgblanca = "imagenes/" + txttipo.text + txtconcepto.text + txtmarca.text + "blanco" + extencionb;
+        //            flublanca.saveas(server.mappath(imgblanca));
 
 
-        //            string imgNegro = "~/Imagenes/" + txtTipo.Text + txtConcepto.Text + txtMarca.Text + "Negro" + extencionB;
-        //            fluNegra.SaveAs(Server.MapPath(imgNegro));
+        //            string imgnegro = "imagenes/" + txttipo.text + txtconcepto.text + txtmarca.text + "negro" + extencionb;
+        //            flunegra.saveas(server.mappath(imgnegro));
 
-        //            OperacionesBD opbd = new OperacionesBD();
-        //            opbd.CrearProducto(txtTipo.Text,
-        //                txtConcepto.Text, txtMarca.Text,
-        //                Convert.ToInt32(txtPrecio.Text),
-        //                imgBlanca, imgNegro,
+        //            operacionesbd opbd = new operacionesbd();
+        //            opbd.crearproducto(txttipo.text,
+        //                txtconcepto.text, txtmarca.text,
+        //                convert.toint32(txtprecio.text),
+        //                imgblanca, imgnegro,
         //                "vigente");
         //        }
 
         //    }
         //    else
         //    {
-        //        lblBlanca.Text = "Cargue las dos imagenes";//mensaje
+        //        lblblanca.text = "cargue las dos imagenes";//mensaje
         //    }
         //}
     }
