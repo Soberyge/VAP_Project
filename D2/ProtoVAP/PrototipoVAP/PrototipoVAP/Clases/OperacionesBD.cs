@@ -70,7 +70,7 @@ namespace PrototipoVAP
             return editado;
         }
 
-        public bool CrearProducto(string tipo, string concepto, string marca, int precio, byte[] imgB, byte[] imgN, string estado)
+        public bool CrearProducto(string tipo, string concepto, string marca, int precio, string imgB, string imgN, string estado)
         {
             bool ok = false;
             using (SqlConnection con = new SqlConnection(Conexion.cstr))
@@ -82,8 +82,8 @@ namespace PrototipoVAP
                 cmd.Parameters.Add("@txt_concepto_prenda", SqlDbType.VarChar).Value = concepto;
                 cmd.Parameters.Add("@txt_marca_prenda", SqlDbType.VarChar).Value = marca;
                 cmd.Parameters.Add("@dec_precio_prenda", SqlDbType.Decimal).Value = precio;
-                cmd.Parameters.Add("@img_blanco_prenda", SqlDbType.Image).Value = imgB;
-                cmd.Parameters.Add("@img_negro_prenda", SqlDbType.Image).Value = imgN;
+                cmd.Parameters.Add("@img_blanco_prenda", SqlDbType.VarChar).Value = imgB;
+                cmd.Parameters.Add("@img_negro_prenda", SqlDbType.VarChar).Value = imgN;
                 cmd.Parameters.Add("@txt_estado_prenda", SqlDbType.VarChar).Value = estado;
                 cmd.Connection = con;
                 con.Open();
@@ -220,17 +220,16 @@ namespace PrototipoVAP
             }
             return ok;
         }
-        public bool AgrgarProductoVenta(int idClente, string fecha, float total)
+        public bool AgrgarProductoVenta(int cantidad, string variante)
         {
             bool ok = false;
             using (SqlConnection con = new SqlConnection(Conexion.cstr))
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "CreaVentaNueva";
-                cmd.Parameters.Add("@txt_color_prenda", SqlDbType.Date).Value = fecha;
-                cmd.Parameters.Add("@txt_talla_prenda", SqlDbType.Decimal).Value = total;
-                cmd.Parameters.Add("@txt_talla_prenda", SqlDbType.Int).Value = idClente;
+                cmd.CommandText = "AgrgarProductoVenta";
+                cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = cantidad;
+                cmd.Parameters.Add("@idVariante", SqlDbType.VarChar).Value = variante;
 
                 cmd.Connection = con;
                 con.Open();

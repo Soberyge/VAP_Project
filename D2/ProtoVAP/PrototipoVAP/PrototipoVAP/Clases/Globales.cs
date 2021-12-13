@@ -10,6 +10,7 @@ namespace PrototipoVAP
         //cliente logeado
 
         public static string busqueda = "";
+        public static int idCliente = 1;
 
     }
 }

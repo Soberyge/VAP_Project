@@ -182,3 +182,15 @@
     background-color: white;
     border: 2px solid black;
 }
+
+.col-6 #TituloCarrito {
+    float: left;
+}
+
+.col-6 #TotalCarrito {
+    float: right;
+}
+
+#header-carrito{
+    margin: 30px 80px;
+}

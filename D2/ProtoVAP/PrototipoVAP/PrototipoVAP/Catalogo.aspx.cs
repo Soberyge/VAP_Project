@@ -35,8 +35,8 @@ namespace PrototipoVAP
                 string tipo = catalogo.Tables[0].Rows[i][1].ToString();
                 string marca = catalogo.Tables[0].Rows[i][3].ToString();
                 decimal precio = Convert.ToDecimal(catalogo.Tables[0].Rows[i][4]);
-                byte[] imgb = (byte[])catalogo.Tables[0].Rows[i][5];
-                byte[] imgn = (byte[])catalogo.Tables[0].Rows[i][6];
+                string imgb = catalogo.Tables[0].Rows[i][5].ToString();
+                string imgn = catalogo.Tables[0].Rows[i][6].ToString();
 
                 TodaVariante = op.ObtenerVariante(id);
 

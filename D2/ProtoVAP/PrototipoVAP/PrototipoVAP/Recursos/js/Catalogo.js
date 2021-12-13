@@ -20,7 +20,7 @@ const btnCerrar = document.getElementById('btnCerrarmodal');
 let tallaEscogida = "";
 let colorEscogido = "";
 let idProducto = 0;
-let idVariante = "";
+let variante = undefined;
 
 let productos_filtrados = productos.slice();    //arreglo con filtros 
 let ordenando = false;  //variable para saber si se esta ordenando el contenido o no
@@ -84,6 +84,7 @@ const renderProducts = (filtrados) => {
     else ordenando = false;
 }
 
+//Trae el producto seleccionado de vuelta
 function encuentraProducto() { return productos.find(producto => producto.Id == idProducto) };
 
 //Asignación de evento al botón Ver Detalles
@@ -134,10 +135,11 @@ colorBlanco.onclick = () => {
     buscarVariacion();
 }
 
+//Valida si existe la variación solicitada por el usuario
 function buscarVariacion() {
     if (tallaEscogida && colorEscogido !== "") {
         const producto = encuentraProducto();
-        let variante = producto.Variantes.find(v => v.Talla === tallaEscogida && v.Color === colorEscogido);
+        variante = producto.Variantes.find(v => v.Talla === tallaEscogida && v.Color === colorEscogido);
 
         if (variante === undefined) {
             existencias.innerHTML = `Sin Existencias`;
@@ -145,16 +147,16 @@ function buscarVariacion() {
         }            
         else {
             existencias.innerHTML = `Existencias: ${variante.Cantidad}`;
-            carritoBtn.disabled = false;
-            idVariante = variante.IdVariante;
+            carritoBtn.disabled = false;            
         }
     }
 }
 
+//limpiamos los campos y las variables
 function limpiarDatos() {
     tallaEscogida = "";
     colorEscogido = "";
-    idVariante = "";
+    variante = undefined;
     existencias.textContent = "";
     carritoBtn.disabled = true;
 }
@@ -162,8 +164,15 @@ function limpiarDatos() {
 btnCancelar.onclick = limpiarDatos;
 btnCerrar.onclick = limpiarDatos;
 
+//almacenando valores en el localStorage
 carritoBtn.onclick = () => {
-
+    let id = localStorage.length + 1;
+    Object.assign(variante, {
+        tipo: productos[idProducto-1].Tipo,
+        concepto: productos[idProducto-1].Concepto,
+        precio: productos[idProducto-1].Precio
+    });    
+    localStorage.setItem(id, JSON.stringify(variante));
     limpiarDatos();
 }
 

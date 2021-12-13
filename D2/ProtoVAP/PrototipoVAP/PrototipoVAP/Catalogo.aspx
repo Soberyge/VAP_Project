@@ -70,13 +70,15 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnCancelarmodal" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" disabled id="btnAgregarCarrito" class="btn btn-primary">Agregar al carrito</button>
+                    <button type="button" disabled id="btnAgregarCarrito" class="btn btn-primary" data-bs-dismiss="modal">Agregar al carrito</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <%--JS--%>
     <script type="text/javascript">
         const productos = <%= MyProperty %>;
     </script>
+    <script src="Recursos/js/Catalogo.js"></script>
 </asp:Content>

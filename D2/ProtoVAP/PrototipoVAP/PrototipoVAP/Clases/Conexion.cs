@@ -7,6 +7,6 @@ namespace PrototipoVAP
 {
     public static class Conexion
     {
-        public static string cstr = @"Data Source=LAPTOP-0EU5I1BG\CITLALI;Initial Catalog=VAP_Project;Integrated Security=True";
+        public static string cstr = "Data Source=DESKTOP-IT9UGBJ;Initial Catalog=VAP_Project;Integrated Security=True";
     }
 }
