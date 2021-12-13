@@ -117,6 +117,18 @@
     margin-left: -5px;
 }
 
+#filtrosInventario {
+    margin-bottom: 24px;
+}
+
+#filtrosInventario .AgregarP{
+    float:left;
+}
+
+#filtrosInventario .FiltrarP {
+    float: right;
+}
+
 #head-catalogo #order_by{
     float:right;
     margin-right: 16px;

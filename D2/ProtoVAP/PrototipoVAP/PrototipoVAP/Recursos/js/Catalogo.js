@@ -156,12 +156,14 @@ function limpiarDatos() {
     colorEscogido = "";
     idVariante = "";
     existencias.textContent = "";
+    carritoBtn.disabled = true;
 }
 
 btnCancelar.onclick = limpiarDatos;
 btnCerrar.onclick = limpiarDatos;
 
 carritoBtn.onclick = () => {
+
     limpiarDatos();
 }
 

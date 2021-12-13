@@ -59,6 +59,7 @@ C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.CopyComplete
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.dll
 C:\Users\luis-\OneDrive\Escritorio\Semestre actual\.NET\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.pdb
+C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.CoreCompileInputs.cache
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\PrototipoVAP.dll.config
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\PrototipoVAP.dll
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\PrototipoVAP.pdb
@@ -115,7 +116,6 @@ C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoV
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\Newtonsoft.Json.dll
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\Newtonsoft.Json.xml
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.CoreCompileInputs.cache
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.dll
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.pdb
 C:\Users\citla\OneDrive\Desktop\Proyecto_Luis\VAP_Project\D2\ProtoVAP\PrototipoVAP\PrototipoVAP\obj\Debug\PrototipoVAP.csproj.AssemblyReference.cache

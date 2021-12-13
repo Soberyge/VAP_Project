@@ -72,14 +72,17 @@
   <ItemGroup>
     <Content Include="Carrito.aspx" />
     <Content Include="Catalogo.aspx" />
+    <Content Include="Inventario.aspx" />
     <Content Include="Login.aspx" />
-    <Content Include="Pedidos.aspx" />
+    <Content Include="PedidosAdministrador.aspx" />
+    <Content Include="PedidosCliente.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Recursos\css\Estilos.css" />
     <Content Include="Recursos\Iconos\VAP_Logo.ico" />
     <Content Include="Recursos\Imagenes\VAP_Logo.png" />
     <Content Include="Recursos\js\Catalogo.js" />
     <Content Include="Recursos\js\main.js" />
+    <Content Include="Ventas.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +104,13 @@
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Globales.cs" />
+    <Compile Include="Inventario.aspx.cs">
+      <DependentUpon>Inventario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inventario.aspx.designer.cs">
+      <DependentUpon>Inventario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -108,12 +118,26 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pedidos.aspx.cs">
-      <DependentUpon>Pedidos.aspx</DependentUpon>
+    <Compile Include="PedidosAdministrador.aspx.cs">
+      <DependentUpon>PedidosAdministrador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pedidos.aspx.designer.cs">
-      <DependentUpon>Pedidos.aspx</DependentUpon>
+    <Compile Include="PedidosAdministrador.aspx.designer.cs">
+      <DependentUpon>PedidosAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Recursos\Master Page\MasterPageAdministrador.Master.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recursos\Master Page\MasterPageAdministrador.Master.designer.cs">
+      <DependentUpon>MasterPageAdministrador.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PedidosCliente.aspx.cs">
+      <DependentUpon>PedidosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PedidosCliente.aspx.designer.cs">
+      <DependentUpon>PedidosCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
@@ -133,9 +157,17 @@
     <Compile Include="Clases\Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clases\Variantes.cs" />
+    <Compile Include="Ventas.aspx.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ventas.aspx.designer.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Recursos\Master Page\MasterPageCliente.Master" />
+    <Content Include="Recursos\Master Page\MasterPageAdministrador.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
