@@ -9,9 +9,27 @@ namespace PrototipoVAP
 {
     public class OperacionesBD
     {
-        public bool VerificarUsuario()
+        //Usuarios---------------------
+        public bool VerificarUsuario(string correo, string pass)
         {
             bool existe = false;
+            DataSet dst = new DataSet();
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "ComprobarPass";
+                cmd.Parameters.Add("@correo", SqlDbType.VarChar).Value = correo;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                cmd.Connection = con;
+                con.Open();
+                sda.Fill(dst);
+                con.Close();
+            }
+            if (dst.Tables[0].Rows[0][6].ToString() == pass)
+            { existe = true; }
+
 
             return existe;
         }
@@ -22,10 +40,25 @@ namespace PrototipoVAP
             return existe;
         }
 
-        public bool RegistrarUsuario()
+        public bool RegistrarUsuario(string nombre, string apellido, string tel, string correo, string pass)
         {
             bool registrado = false;
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "CrearProducto";
+                cmd.Parameters.Add("@nombre_cliente", SqlDbType.Int).Value = nombre;
+                cmd.Parameters.Add("@apellidos_cliente", SqlDbType.VarChar).Value = apellido;
+                cmd.Parameters.Add("@celular_cliente", SqlDbType.VarChar).Value = tel;
+                cmd.Parameters.Add("@correo_cliente", SqlDbType.BigInt).Value = correo;
+                cmd.Parameters.Add("@contraseña_cliente", SqlDbType.VarChar).Value = pass;
 
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                registrado = true;
+            }
             return registrado;
         }
 
@@ -70,6 +103,20 @@ namespace PrototipoVAP
             return editado;
         }
 
+        public DataSet ObtenerPedidosDelCliente(int idCliente)//pendiente
+        {
+            string query = "Select * from variantes_producto where id_prenda = ";
+
+            DataSet dst = new DataSet();
+            SqlConnection cnx = new SqlConnection(Conexion.cstr);
+            SqlDataAdapter adp = new SqlDataAdapter(query, cnx);
+
+            adp.Fill(dst);
+            cnx.Close();
+            return dst;
+        }
+
+        //Cosas de productos------------------------------
         public bool CrearProducto(string tipo, string concepto, string marca, int precio, string imgB, string imgN, string estado)
         {
             bool ok = false;
@@ -175,7 +222,7 @@ namespace PrototipoVAP
 
             return dst;
         }
-        public DataSet ObtenerPedidosClientes(string filtro)//este no se si es mejor como datatable
+        public DataSet ObtenerPedidosClientes(string filtro)
         {
             string query = "";
 
@@ -187,7 +234,7 @@ namespace PrototipoVAP
             cnx.Close();
             return dst;
         }
-        public DataSet ObtenerHistorialVentas(string filtro)//este no se si es mejor como datatable
+        public DataSet ObtenerHistorialVentas(string filtro)
         {
             string query = "";
 
@@ -209,9 +256,9 @@ namespace PrototipoVAP
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "CreaVentaNueva";
-                cmd.Parameters.Add("@txt_color_prenda", SqlDbType.Date).Value = fecha;
-                cmd.Parameters.Add("@txt_talla_prenda", SqlDbType.Decimal).Value = total;
-                cmd.Parameters.Add("@txt_talla_prenda", SqlDbType.Int).Value = idClente;
+                cmd.Parameters.Add("@fecha_pedido", SqlDbType.Date).Value = fecha;
+                cmd.Parameters.Add("@total_pedido", SqlDbType.Decimal).Value = total;
+                cmd.Parameters.Add("@id_cliente", SqlDbType.Int).Value = idClente;
 
                 cmd.Connection = con;
                 con.Open();

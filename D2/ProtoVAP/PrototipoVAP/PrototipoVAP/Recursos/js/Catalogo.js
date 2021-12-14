@@ -209,7 +209,7 @@ btnCerrar.onclick = limpiarDatos;
 
 //almacenando valores en el localStorage
 carritoBtn.onclick = () => {
-    let id = localStorage.length + 1;
+    let id = localStorage.length + Math.random();   //id en el localStorage
     Object.assign(variante, {
         tipo: productos[idProducto-1].Tipo,
         concepto: productos[idProducto-1].Concepto,

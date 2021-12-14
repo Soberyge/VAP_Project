@@ -207,3 +207,39 @@
 .modal-body .col-6 #rbChico {
     margin-left: 20px!important;
 }
+
+#carrito .card .row .col-3 a:hover{
+    cursor: default;
+}
+
+#carrito .card .row .col-3 .btn i:hover {
+    cursor: pointer!important;
+}
+
+#ddiPerfil, #ddiPedidos, #ddd, #ddiSignOut{
+    display:none;
+}
+
+#a_perfil, #sign_off{
+    display:none !important;
+}
+
+#modalAP h4, .modal-element {
+    width: 100%;
+}
+#modalAP h4{
+    text-align:start!important;
+}
+#modalAP .modal-element {
+    margin-bottom: 5px;
+}
+
+#modalAP #imagenesProducto .btn-group h6{
+    margin-bottom: 0 !important;
+    padding-top:8px!important;
+}
+
+#modalAP #imagenesProducto .btn-group {
+    width:100%;
+    margin-top: 5px;
+}

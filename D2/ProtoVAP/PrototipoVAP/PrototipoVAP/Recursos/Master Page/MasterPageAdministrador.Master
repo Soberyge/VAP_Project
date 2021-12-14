@@ -48,10 +48,10 @@
                 <h4>VAP</h4>
             </div>
             <div class="menu">
-                <a href="../../Inventario.aspx" id="a_catalogo" class="p-3"><i class="bi bi-archive lead"></i> Inventario</a>
-                <a href="../../PedidosAdministrador.aspx" id="a_carrito" class="p-3"><i class="bi bi-truck lead"></i> Pedidos</a>
-                <a href="../../Ventas.aspx" id="a_perfil" class="p-3"><i class="bi bi-bar-chart-line lead"></i> Ventas</a>
-                <a href="#" id="sign_off" class="p-3"><i class="bi bi-door-open mr-2 lead"></i> Cerrar Sesión</a>
+                <a href="../../Inventario.aspx" id="a_inventario" class="p-3"><i class="bi bi-archive lead"></i> Inventario</a>
+                <a href="../../PedidosAdministrador.aspx" id="a_pedidos_admin" class="p-3"><i class="bi bi-truck lead"></i> Pedidos</a>
+                <a href="../../Ventas.aspx" id="a_ventas" class="p-3"><i class="bi bi-bar-chart-line lead"></i> Ventas</a>
+                <a href="#" id="sign_off_admin" class="p-3"><i class="bi bi-door-open mr-2 lead"></i> Cerrar Sesión</a>
             </div>
         </div>
     </div>

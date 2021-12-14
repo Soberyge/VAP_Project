@@ -19,7 +19,7 @@
     </div>
 
     <div id="confirmarPedido" style="visibility:hidden;" class="text-center">
-        <asp:Button Text="Confirmar pedido" ID="btnConfirmarPedido" style="border-radius:30px;" CssClass="btn btn-success" runat="server"/>
+        <button id="btnConfirmarPedido" style="border-radius:30px;" class="btn btn-primary">Confirmar pedido</button>
     </div>
 
     <%--JS--%>

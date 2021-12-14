@@ -34,7 +34,7 @@
             <div class="row collapse navbar-collapse" id="navbarColor01">
                 <div class="navbar-nav me-auto">
                     <div id="divBuscar" class="nav-item col-10 d-flex">
-                        <asp:TextBox id="txtBusqueda" runat="server" CssClass="form-control me-sm-2" placeholder="¿Qué estas buscando?"></asp:TextBox>
+                        <asp:TextBox id="txtBusqueda" runat="server" style="margin-right:0!important;" CssClass="form-control me-sm-2" placeholder="¿Qué estas buscando?"></asp:TextBox>
                         <asp:LinkButton OnClick="btnBuscar_Click" runat="server" ID="btnBuscar" CssClass="btn btn-secondary" Text="<i class='bi bi-search lead'></i>" />
                     </div>
                     <div class="nav-item">
@@ -47,12 +47,13 @@
                             <i class="bi bi-person-circle lead"></i>
                         </a>
                          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
-                            <li><a class="dropdown-item" href="../../Perfil.aspx">Perfil</a></li>
-                            <li><a class="dropdown-item" href="../../Pedidos.aspx">Pedidos</a></li>                            
+                            <li><a class="dropdown-item" id="ddiPerfil" href="../../Perfil.aspx">Perfil</a></li>
+                            <li><a class="dropdown-item" id="ddiPedidos" href="../../Pedidos.aspx">Pedidos</a></li> 
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#mainModal" href="#">Iniciar Sesión</a></li> 
                             <li>
-                                <hr class="dropdown-divider">
+                                <hr class="dropdown-divider" id="ddd">
                             </li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" id="ddiSignOut" href="#">Cerrar sesión</a></li>
                         </ul>
                     </div>        
                 </div>
@@ -71,6 +72,31 @@
                 <a href="../../Carrito.aspx" id="a_carrito" class="p-3"><i class="bi bi-cart mr-2 lead"></i> Carrito</a>
                 <a href="../../Perfil.aspx" id="a_perfil" class="p-3"><i class="bi bi-person mr-2 lead"></i> Perfil</a>
                 <a href="#" id="sign_off" class="p-3"><i class="bi bi-door-open mr-2 lead"></i> Cerrar Sesión</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Main -->
+    <div class="modal fade" id="mainModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="btnCerrarmodal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <%--Login--%>
+                        </div>
+                        <div class="col-6">
+                            <%--Registro--%>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCancelarmodal" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
