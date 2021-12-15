@@ -3,6 +3,61 @@ const navbar = document.getElementById('navbar');
 const sidebar = document.getElementById('sidebar-container');
 const content = document.getElementById('content1');
 
+//Elementos que mostrar al iniciar sesión
+const ddiPerfil = document.getElementById('ddiPerfil');
+const ddiPedidos = document.getElementById('ddiPedidos');
+const ddd = document.getElementById('ddd');
+const ddiSignOut = document.getElementById('ddiSignOut');
+const a_perfil = document.getElementById('a_perfil');
+const sign_off = document.getElementById('sign_off');
+const ddiInSe = document.getElementById('ddiInSe');
+
+
+//Al cargar el documento renderiza si hay o no cliente logueado
+$(document).ready(function () {
+    asyncAjax("GetCliente").then((data) => {
+        cliente = data.d;
+        if (cliente !== "") {
+            ddiPerfil.style.display = "block";
+            ddiPedidos.style.display = "block";
+            ddd.style.display = "block";
+            ddiSignOut.style.display = "block";
+            a_perfil.style.visibility = "visible";
+            sign_off.style.visibility = "visible";
+            ddiInSe.style.display = "none";
+        } else ddiInSe.style.display = "block";
+    })
+})
+
+//Petición AJAX para traer al cliente si es que esta logueado
+async function asyncAjax(metodo) {
+    let result
+    try {
+        result = $.ajax({
+            type: "POST",
+            url: "Catalogo.aspx/" + metodo,
+            data: null,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,            
+        });
+        return result
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
+function CerrarSesion () {
+    if (confirm("Seguro que desea cerrar la sesión?")) {
+        asyncAjax("CerrarSesion").then((data) => {
+            console.log(data);
+        })
+    }
+}
+
+//PAGINA RESPONSIVA
+
 btn_toggle.onclick = () => {
     const heightNavbar = getComputedStyle(navbar).getPropertyValue("height");
     const heightSideBar = getComputedStyle(sidebar).getPropertyValue("height");

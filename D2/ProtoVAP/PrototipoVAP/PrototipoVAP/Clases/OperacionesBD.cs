@@ -10,13 +10,13 @@ namespace PrototipoVAP
     public class OperacionesBD
     {
         //Usuarios---------------------
-        public bool VerificarUsuario(string correo, string pass)
+        public Cliente VerificarUsuario(string correo, string pass)
         {
-            bool existe = false;
+            Cliente cliente = new Cliente();
+
             DataSet dst = new DataSet();
             using (SqlConnection con = new SqlConnection(Conexion.cstr))
             {
-
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "ComprobarPass";
@@ -28,10 +28,15 @@ namespace PrototipoVAP
                 con.Close();
             }
             if (dst.Tables[0].Rows[0][6].ToString() == pass)
-            { existe = true; }
+            { 
+                cliente.IdCliente = Convert.ToInt32(dst.Tables[0].Rows[0][0]);
+                cliente.Nombre = dst.Tables[0].Rows[0][1].ToString();
+                cliente.Apellidos = dst.Tables[0].Rows[0][2].ToString();
+                cliente.Celular = Convert.ToInt64(dst.Tables[0].Rows[0][3]);
+                cliente.Correo = dst.Tables[0].Rows[0][4].ToString();
+            }
 
-
-            return existe;
+            return cliente;
         }
         public bool VerificarAdmin()
         {

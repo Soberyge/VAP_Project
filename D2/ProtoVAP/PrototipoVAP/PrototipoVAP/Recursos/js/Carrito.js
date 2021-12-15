@@ -1,13 +1,12 @@
-﻿const carrito = document.getElementById('carrito');
+﻿import 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js' //importamos bootstrap Modal para poder manipular el modal de login
+
+const carrito = document.getElementById('carrito');
 const titulo = document.getElementById('TituloCarrito');
 const total = document.getElementById('TotalCarrito');
 const divPedido = document.getElementById('confirmarPedido');
 const btnConfirmarPedido = document.getElementById('btnConfirmarPedido');
 //Login
-const mainModal = new bootstrap.Modal(document.getElementById('mainModal')/*, {
-    keyboard: false
-}*/);
-
+const mainModal = new bootstrap.Modal(document.getElementById('mainModal'));
 
 let carritoLleno = [];
 let keys = [];
@@ -89,21 +88,22 @@ function borrarCarrito(id) {
 }
 
 //evento y funcion al dar clic en confirmar pedido
-btnConfirmarPedido.onclick = (/*e*/) => {
+btnConfirmarPedido.onclick = (e) => {    
+    e.preventDefault();
 
-    mainModal.show();
+    if (cliente != "") {
+        let idArray = [];
+        carritoLleno.forEach(producto => idArray.push(producto.IdVariante))
+        let data = { idArray: idArray, total: totalFinal, idCliente: JSON.parse(cliente).IdCliente }
 
-    //e.preventDefault();
-
-    //let idArray = [];
-    //carritoLleno.forEach(producto => idArray.push(producto.IdVariante))
-    //let data = { idArray: idArray, total: totalFinal }
-
-    //enviarCarrito(data).then((data) => {
-    //    console.info('Response:', data)
-    //    limpiarPantallaCarrito()
-    //    localStorage.clear()
-    //}) 
+        enviarCarrito(data).then((data) => {
+            console.info('Response:', data.d)
+            limpiarPantallaCarrito()
+            localStorage.clear()
+        })
+    } else {
+        mainModal.show();
+    }
 }
 
 //funcion para enviar el arreglo que contiene los id de los productos que hay en el carrito

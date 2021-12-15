@@ -8,8 +8,8 @@
         <%--FILTROS--%>
         <div class="col-6">
             <div id="filtros" class="btn-group col-2" role="group">
-                <button disabled type="button" class="btn btn-primary">Tipo</button>
-                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <button disabled type="button" style="border-radius:0!important;" class="btn btn-primary">Tipo</button>
+                <button id="btnGroupDrop1" type="button" style="border-radius:0!important;" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
                     <a id="fltTodo" class="dropdown-item" href="#">Todo</a>
                     <a id="fltSudadera" class="dropdown-item" href="#">Sudadera</a>
@@ -21,8 +21,8 @@
         <%--ORDER BY--%>
         <div class="col-6">
             <div id="order_by" class="btn-group" role="group">
-                <button disabled type="button" class="btn btn-primary">Ordenar por</button>
-                <button id="btnGroupDrop2" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <button disabled type="button" style="border-radius:0!important;" class="btn btn-primary">Ordenar por</button>
+                <button id="btnGroupDrop2" type="button" style="border-radius:0!important;" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                     <a id="odbMenor" class="dropdown-item" href="#">Menor precio</a>
                     <a id="odbMayor" class="dropdown-item" href="#">Mayor precio</a>
@@ -78,7 +78,8 @@
 
     <%--JS--%>
     <script type="text/javascript">
-        const productos = <%= MyProperty %>;
+        const productos = <%= ListaProductos %>;
     </script>
     <script src="Recursos/js/Catalogo.js"></script>
+
 </asp:Content>

@@ -13,5 +13,10 @@ namespace PrototipoVAP
         {
 
         }
+
+        protected void btnGuardarInfo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

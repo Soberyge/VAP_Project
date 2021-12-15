@@ -23,6 +23,6 @@
     </div>
 
     <%--JS--%>
-    <script src="Recursos/js/Carrito.js"></script>
+    <script type="module" src="Recursos/js/Carrito.js"></script>
 
 </asp:Content>

@@ -216,12 +216,12 @@
     cursor: pointer!important;
 }
 
-#ddiPerfil, #ddiPedidos, #ddd, #ddiSignOut{
+#ddiPerfil, #ddiPedidos, #ddd, #ddiSignOut {
     display:none;
 }
 
 #a_perfil, #sign_off{
-    display:none !important;
+    visibility: hidden;
 }
 
 #modalAP h4, .modal-element {
@@ -242,4 +242,27 @@
 #modalAP #imagenesProducto .btn-group {
     width:100%;
     margin-top: 5px;
+}
+
+#login {
+    display: flex;
+    align-items: center;
+}
+
+.form-floating .form-control {
+    border-radius: 30px !important;
+}
+
+#perfil-content .form-control {
+    border-radius: 30px !important;    
+}
+
+
+#perfil-content{
+    padding: 60px 200px;
+
+}
+
+.btn {
+    border-radius: 30px !important;
 }

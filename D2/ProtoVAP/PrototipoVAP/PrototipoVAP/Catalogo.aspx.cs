@@ -57,6 +57,15 @@ namespace PrototipoVAP
         }
 
         //MANDAR PRODUCTOS A LA VISTA
-        protected string MyProperty { get { return json; } }
+        protected string ListaProductos { get { return json; } }
+
+        [System.Web.Services.WebMethod]
+        public static string GetCliente() { return Globales.clienteString; }
+
+        [System.Web.Services.WebMethod]
+        public static string CerrarSesion() {
+            Globales.clienteString = "";            
+            return "Sesion Cerrada";
+        }
     }
 }

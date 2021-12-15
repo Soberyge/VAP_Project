@@ -5,6 +5,6 @@
         //cliente logeado
 
         public static string busqueda = "";
-        public static int idCliente = 5;
+        public static string clienteString = "";
     }
 }

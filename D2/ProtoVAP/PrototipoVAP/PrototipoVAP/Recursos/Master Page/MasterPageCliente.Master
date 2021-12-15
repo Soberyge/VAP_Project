@@ -16,6 +16,10 @@
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+    <script type="text/javascript">
+        var cliente = "cliente vacio";
+    </script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -35,7 +39,7 @@
                 <div class="navbar-nav me-auto">
                     <div id="divBuscar" class="nav-item col-10 d-flex">
                         <asp:TextBox id="txtBusqueda" runat="server" style="margin-right:0!important;" CssClass="form-control me-sm-2" placeholder="¿Qué estas buscando?"></asp:TextBox>
-                        <asp:LinkButton OnClick="btnBuscar_Click" runat="server" ID="btnBuscar" CssClass="btn btn-secondary" Text="<i class='bi bi-search lead'></i>" />
+                        <asp:LinkButton OnClick="btnBuscar_Click" runat="server" ID="btnBuscar" CssClass="btn btn-secondary" style="border-radius:0!important;" Text="<i class='bi bi-search lead'></i>" />
                     </div>
                     <div class="nav-item">
                         <a href="../../Carrito.aspx" class="nav-link text-white">
@@ -47,13 +51,13 @@
                             <i class="bi bi-person-circle lead"></i>
                         </a>
                          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
-                            <li><a class="dropdown-item" id="ddiPerfil" href="../../Perfil.aspx">Perfil</a></li>
-                            <li><a class="dropdown-item" id="ddiPedidos" href="../../Pedidos.aspx">Pedidos</a></li> 
-                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#mainModal" href="#">Iniciar Sesión</a></li> 
+                            <li><a class="dropdown-item" id="ddiPerfil" onclick="renderPerfil()" href="../../Perfil.aspx">Perfil</a></li>
+                            <li><a class="dropdown-item" id="ddiPedidos" href="../../PedidosCliente.aspx">Pedidos</a></li> 
+                            <li><a class="dropdown-item" id="ddiInSe" data-bs-toggle="modal" data-bs-target="#mainModal" href="#">Iniciar Sesión</a></li> 
                             <li>
                                 <hr class="dropdown-divider" id="ddd">
                             </li>
-                            <li><a class="dropdown-item" id="ddiSignOut" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" onclick="CerrarSesion()" id="ddiSignOut" href="../../Catalogo.aspx">Cerrar sesión</a></li>
                         </ul>
                     </div>        
                 </div>
@@ -70,8 +74,8 @@
             <div class="menu">
                 <a href="../../Catalogo.aspx" id="a_catalogo" class="p-3"><i class="bi bi-bag mr-2 lead"></i> Catalogo</a>
                 <a href="../../Carrito.aspx" id="a_carrito" class="p-3"><i class="bi bi-cart mr-2 lead"></i> Carrito</a>
-                <a href="../../Perfil.aspx" id="a_perfil" class="p-3"><i class="bi bi-person mr-2 lead"></i> Perfil</a>
-                <a href="#" id="sign_off" class="p-3"><i class="bi bi-door-open mr-2 lead"></i> Cerrar Sesión</a>
+                <a href="../../Perfil.aspx" id="a_perfil" onclick="renderPerfil()" class="p-3"><i class="bi bi-person mr-2 lead"></i> Perfil</a>
+                <a href="../../Catalogo.aspx" onclick="CerrarSesion()" id="sign_off" class="p-3"><i class="bi bi-door-open mr-2 lead"></i> Cerrar Sesión</a>
             </div>
         </div>
     </div>
@@ -81,21 +85,60 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" id="btnCerrarmodal" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" id="btnCerrarmodalMain" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
+                        <div id="login" class="col-6" style="border-right: thick solid #343A40;">
                             <%--Login--%>
+                            <div class="form-group" style="width:100%!important">
+                                <h1>Login</h1>
+                                <div class="form-floating mb-3">
+                                    <asp:TextBox runat="server" TextMode="Email" CssClass="form-control" ID="txtCorreo" placeholder="Correo"></asp:TextBox>
+                                    <label for="txtCorreo">Correo</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <asp:TextBox runat="server" TextMode="Password" CssClass="form-control" ID="txtContraseña" placeholder="Contraseña"></asp:TextBox>
+                                    <label for="txtContraseña">Contraseña</label>
+                                </div>
+                                <div class="text-center">
+                                    <asp:Button runat="server" CssClass="btn btn-info" ID="btnIngresar" Text="Ingresar" OnClick="btnIngresar_Click"/>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-6">
+                        <div id="registro" class="col-6">
                             <%--Registro--%>
-
+                            <div class="form-group">
+                                <h1>Registro</h1>
+                                <div class="form-floating mb-3">
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNombre" placeholder="Nombre"></asp:TextBox>
+                                    <label for="txtNombre">Nombre</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtApellidos" placeholder="Apellidos"></asp:TextBox>
+                                    <label for="txtApellidos">Apellidos</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <asp:TextBox runat="server" TextMode="Email" CssClass="form-control" ID="txtCorreoR" placeholder="nombre@ejemplo.com"></asp:TextBox>
+                                    <label for="txtCorreoR">Correo</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <asp:TextBox runat="server" TextMode="Phone" CssClass="form-control" ID="txtCelular" placeholder="Celular"></asp:TextBox>
+                                    <label for="txtCelular">Celular</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <asp:TextBox runat="server" TextMode="Password" CssClass="form-control" ID="txtContraseñaR" placeholder="Contraseña"></asp:TextBox>
+                                    <label for="txtContraseñaR">Contraseña</label>
+                                </div>
+                                <div class="text-center">
+                                    <asp:Button runat="server" CssClass="btn btn-warning" ID="btnRegistro" Text="Registrarse" OnClick="btnRegistro_Click"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnCancelarmodal" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnCancelarmodalMain" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -109,10 +152,11 @@
 
     </form>
 
-    <%--Bootstrap--%>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <%--JQuery--%>
-	<script	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <%--Bootstrap--%>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <%--JS--%>
     <script src="Recursos/js/main.js"></script>
 

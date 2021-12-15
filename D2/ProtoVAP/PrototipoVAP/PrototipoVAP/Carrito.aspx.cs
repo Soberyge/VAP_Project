@@ -12,19 +12,20 @@ namespace PrototipoVAP
         }
 
         [WebMethod]
-        public static string GetCarrito(ArrayList idArray, float total)
+        public static string GetCarrito(ArrayList idArray, float total, int idCliente)
         {
-            ConfirmarCompra(idArray, total);
+            ConfirmarCompra(idArray, total, idCliente);
             return "Ok";
         }
-
-        public static void ConfirmarCompra(ArrayList ListaCarrito, float total)
+        
+        public static void ConfirmarCompra(ArrayList ListaCarrito, float total, int idCliente)
         {//en base de dato es decimal
             //bool confirmado = false;
             OperacionesBD op = new OperacionesBD();
             //Se crea la venta
-            string fecha = DateTime.Now.ToString("yyyy-MM-dd");
-            op.CreaVentaNueva(Globales.idCliente, fecha, total);
+            string fecha = DateTime.Now.ToString("yyyy-MM-dd");            
+
+            op.CreaVentaNueva(idCliente, fecha, total);
 
             //se llena el pedido de la venta con los articulos del carrito           
             foreach (string p in ListaCarrito)

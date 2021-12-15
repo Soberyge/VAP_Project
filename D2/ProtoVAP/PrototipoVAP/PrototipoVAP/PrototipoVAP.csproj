@@ -73,7 +73,6 @@
     <Content Include="Carrito.aspx" />
     <Content Include="Catalogo.aspx" />
     <Content Include="Inventario.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="PedidosAdministrador.aspx" />
     <Content Include="PedidosCliente.aspx" />
     <Content Include="Perfil.aspx" />
@@ -81,8 +80,9 @@
     <Content Include="Recursos\Iconos\VAP_Logo.ico" />
     <Content Include="Recursos\js\Carrito.js" />
     <Content Include="Recursos\js\Catalogo.js" />
-    <Content Include="Recursos\js\Inventario.js" />
+    <Content Include="Recursos\js\PedidoC.js" />
     <Content Include="Recursos\js\main.js" />
+    <Content Include="Recursos\js\Perfil.js" />
     <Content Include="Ventas.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -111,13 +111,6 @@
     </Compile>
     <Compile Include="Inventario.aspx.designer.cs">
       <DependentUpon>Inventario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="PedidosAdministrador.aspx.cs">
       <DependentUpon>PedidosAdministrador.aspx</DependentUpon>
