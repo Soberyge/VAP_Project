@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <script type="text/javascript">
-        var cliente = "cliente vacio";
+        var cliente = "";
     </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -51,7 +51,7 @@
                             <i class="bi bi-person-circle lead"></i>
                         </a>
                          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser">
-                            <li><a class="dropdown-item" id="ddiPerfil" onclick="renderPerfil()" href="../../Perfil.aspx">Perfil</a></li>
+                            <li><a class="dropdown-item" id="ddiPerfil" href="../../Perfil.aspx">Perfil</a></li>
                             <li><a class="dropdown-item" id="ddiPedidos" href="../../PedidosCliente.aspx">Pedidos</a></li> 
                             <li><a class="dropdown-item" id="ddiInSe" data-bs-toggle="modal" data-bs-target="#mainModal" href="#">Iniciar Sesión</a></li> 
                             <li>
@@ -74,7 +74,7 @@
             <div class="menu">
                 <a href="../../Catalogo.aspx" id="a_catalogo" class="p-3"><i class="bi bi-bag mr-2 lead"></i> Catalogo</a>
                 <a href="../../Carrito.aspx" id="a_carrito" class="p-3"><i class="bi bi-cart mr-2 lead"></i> Carrito</a>
-                <a href="../../Perfil.aspx" id="a_perfil" onclick="renderPerfil()" class="p-3"><i class="bi bi-person mr-2 lead"></i> Perfil</a>
+                <a href="../../Perfil.aspx" id="a_perfil" class="p-3"><i class="bi bi-person mr-2 lead"></i> Perfil</a>
                 <a href="../../Catalogo.aspx" onclick="CerrarSesion()" id="sign_off" class="p-3"><i class="bi bi-door-open mr-2 lead"></i> Cerrar Sesión</a>
             </div>
         </div>

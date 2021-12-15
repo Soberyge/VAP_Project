@@ -59,6 +59,8 @@ namespace PrototipoVAP
         //MANDAR PRODUCTOS A LA VISTA
         protected string ListaProductos { get { return json; } }
 
+        //Lugar a donde llegan las peticiones AJAX
+
         [System.Web.Services.WebMethod]
         public static string GetCliente() { return Globales.clienteString; }
 

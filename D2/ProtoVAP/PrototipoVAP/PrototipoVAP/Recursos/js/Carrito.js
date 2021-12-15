@@ -73,19 +73,16 @@ document.attachEvent = function (evt, q, fn) {
     });
 };
 
-//Funcion del evento click del boton borrar
+//Funcion del evento click del boton borrar y limpiar el localStorage
 document.attachEvent('click', '.i', function () {
-    borrarCarrito(this.id)
-    renderCarrito()
+    if (confirm("Seguro que deseas eliminar este producto de tu carrito?")) {
+        keys.forEach(key => {
+            let productoSeVa = JSON.parse(localStorage.getItem(key));
+            if (productoSeVa.IdVariante === this.id) localStorage.removeItem(key);
+        })
+        renderCarrito()
+    }   
 });
-
-//borrar producto del localStorage
-function borrarCarrito(id) {
-    keys.forEach(key => {
-        let productoSeVa = JSON.parse(localStorage.getItem(key));
-        if (productoSeVa.IdVariante === id) localStorage.removeItem(key);
-    })
-}
 
 //evento y funcion al dar clic en confirmar pedido
 btnConfirmarPedido.onclick = (e) => {    

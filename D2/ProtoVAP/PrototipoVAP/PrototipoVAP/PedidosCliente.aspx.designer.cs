@@ -11,7 +11,7 @@ namespace PrototipoVAP
 {
 
 
-    public partial class Pedidos
+    public partial class PedidosCliente
     {
     }
 }

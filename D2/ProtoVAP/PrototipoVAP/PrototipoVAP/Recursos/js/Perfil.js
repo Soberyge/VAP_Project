@@ -9,16 +9,19 @@ const btnGuardar = document.getElementById('btnGuardarInfo');
 //funcion para ingresar las propiedades del cliente en los textbox
 
 function renderPerfil() {
-    let clienteLocal = JSON.parse(cliente);
+    if (cliente != "") {
+        let clienteLocal = JSON.parse(cliente);
 
-    nombre.text = clienteLocal.Nombre;
-    nombre.readOnly = true;
-    apellidos.text = clienteLocal.Apellidos;
-    apellidos.readOnly = true;
-    celular.text = clienteLocal.Celular;
-    celular.readOnly = true;
-    correo.text = clienteLocal.Correo;
-    correo.readOnly = true;
+        nombre.textContent = clienteLocal.Nombre;
+        nombre.readOnly = true;
+        apellidos.textContent = clienteLocal.Apellidos;
+        apellidos.readOnly = true;
+        celular.textContent = clienteLocal.Celular;
+        celular.readOnly = true;
+        correo.textContent = clienteLocal.Correo;
+        correo.readOnly = true;
+    }
+    
 }
 
 //acciones a realizar al dar clic en el boton editar
@@ -39,3 +42,6 @@ btnCancelar.onclick = () => {
     btnGuardar.style.display = "none";
     btnEditar.style.display = "block";
 }
+
+//cargamos el perfin al cargar la pagina
+renderPerfil()
