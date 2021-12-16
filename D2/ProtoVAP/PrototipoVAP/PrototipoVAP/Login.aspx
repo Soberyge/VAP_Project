@@ -17,6 +17,22 @@
             <asp:TextBox ID="txtPass" runat="server"></asp:TextBox>
             <br />
             <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <br />
+            <br />
+            <br />
+            registrar<br />
+            nombre<asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+            <br />
+            apellido<asp:TextBox ID="txtApe" runat="server"></asp:TextBox>
+            <br />
+            cel<asp:TextBox ID="txtCel" runat="server"></asp:TextBox>
+            <br />
+            correo<asp:TextBox ID="txtMail" runat="server"></asp:TextBox>
+            <br />
+            contraseña<asp:TextBox ID="txtPassReg" runat="server"></asp:TextBox>
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Registrar" />
         </div>
     </form>
 </body>

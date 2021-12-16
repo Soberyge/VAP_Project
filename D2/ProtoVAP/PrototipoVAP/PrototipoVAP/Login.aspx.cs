@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,23 +19,49 @@ namespace PrototipoVAP
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            string cstr = @"Data Source=LAPTOP-12NK0P7A\SQLEXPRESS;Initial Catalog=VAP_Project;Integrated Security=True";
-            SqlConnection cnx = new SqlConnection(cstr);
-            string query = "SELECT * FROM producto;";
-            SqlDataAdapter adp = new SqlDataAdapter(query, cnx);
-            DataSet dst = new DataSet();
-            adp.Fill(dst);
-            for (int i = 0; i < dst.Tables[0].Rows.Count; i++)
+            OperacionesBD op = new OperacionesBD();
+            if (isValidEmail(txtPass.Text))
             {
-                for (int j = 0; j < dst.Tables[0].Columns.Count; j++)
+                bool acceso = op.VerificarUsuario(txtUser.Text, txtPass.Text);
+                if (acceso)
                 {
-                    Response.Write(dst.Tables[0].Rows[i][j] + "\t");
+                    Label1.Text = "existe";
                 }
-                Console.WriteLine();
+                else
+                {
+                    Label1.Text = "no existe";
+                }
             }
-            cnx.Close();
-            Response.Write("se pudo");
-            
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            OperacionesBD op = new OperacionesBD();
+            if (isValidEmail(txtMail.Text))
+            {
+               bool registrado = op.RegistrarUsuario(txtNombre.Text, txtApe.Text, txtCel.Text, txtMail.Text, txtPassReg.Text);
+                if (registrado)
+                {
+                    Label1.Text = "Se a registrado con exito";
+                }
+                else
+                {
+                    Label1.Text = "Este correo ya esta ocupado por otro usuario";
+                }
+            }
+            else
+            {
+                Label1.Text = "El correo no tiene el fomrato correcto";
+            }
+        }
+        public bool isValidEmail(string inputEmail)
+        {
+            string strRegex = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+                return (true);
+            else
+                return (false);
         }
     }
 }

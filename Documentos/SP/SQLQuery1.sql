@@ -18,37 +18,22 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE CrearProducto
-	
-	@txt_tipo_prenda VARCHAR(8),
-	@txt_concepto_prenda VARCHAR(45),
-	@txt_marca_prenda VARCHAR(20),
-	@dec_precio_prenda DECIMAL(6,2),
-	@img_blanco_prenda VARCHAR(100),
-	@img_negro_prenda VARCHAR(100),
-	@txt_estado_prenda VARCHAR(13)
-
+CREATE PROCEDURE CrearVariante
+	-- Add the parameters for the stored procedure here
+	@txt_color_prenda VARCHAR(6),
+	@txt_talla_prenda VARCHAR(2),
+	@int_cantidad_prenda INT,
+	@idVariante  VARCHAR(6),
+	@idprenda int
 AS
 BEGIN
-
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	
-	INSERT INTO producto
-	([txt_tipo_prenda],
-	[txt_concepto_prenda],
-	[txt_marca_prenda],
-	[dec_precio_prenda],
-	[img_blanco_prenda],
-	[img_negro_prenda],
-	[txt_estado_prenda])
-	VALUES 
-	(@txt_tipo_prenda,
-	@txt_concepto_prenda,
-	@txt_marca_prenda,
-	@dec_precio_prenda,
-	@img_blanco_prenda,
-	@img_negro_prenda,
-	@txt_estado_prenda) 
-   
+
+    insert variantes_producto 
+	([txt_id_variane],[txt_color_prenda],[txt_talla_prenda],[int_cantidad_prenda],[id_prenda])
+	values
+	(@idVariante, @txt_color_prenda,@txt_talla_prenda,@int_cantidad_prenda,@idprenda)
 END
 GO

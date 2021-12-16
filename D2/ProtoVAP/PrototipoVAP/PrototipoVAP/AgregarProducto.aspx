@@ -25,11 +25,12 @@
             Imagen negra<asp:FileUpload ID="fluNegra" runat="server" />
             <asp:Label ID="lblNegra" runat="server"></asp:Label>
             <br />
-            <asp:Button ID="btnAgregar" runat="server" OnClick="btnAgregar_Click" Text="Agregar" />
+            <asp:Button ID="btnAgregar" runat="server" OnClick="btnAgregar_Click" Text="Agregar" Height="26px" />
             <br />
-            <asp:Image ID="img1" runat="server" Height="46px" Width="75px" />
-            <asp:ImageMap ID="ImageMap1" runat="server" Height="151px" Width="174px">
-            </asp:ImageMap>
+            <br />
+            <br />
+            <asp:GridView ID="gvdInventario" runat="server">
+            </asp:GridView>
         </div>
     </form>
 </body>

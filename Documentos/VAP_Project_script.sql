@@ -29,8 +29,8 @@ CREATE TABLE producto (
   txt_concepto_prenda VARCHAR(45) NOT NULL,
   txt_marca_prenda VARCHAR(20) NOT NULL,
   dec_precio_prenda DECIMAL(6,2) NOT NULL,
-  img_blanco_prenda IMAGE NOT NULL,
-  img_negro_prenda IMAGE NOT NULL,
+  img_blanco_prenda VARCHAR(100) NOT NULL,
+  img_negro_prenda VARCHAR(100) NOT NULL,
   txt_estado_prenda VARCHAR(13) CHECK(txt_estado_prenda IN('vigente', 'descontinuado')) NOT NULL DEFAULT 'vigente');
 
 -- -----------------------------------------------------

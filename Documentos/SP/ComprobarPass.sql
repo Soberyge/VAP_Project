@@ -18,37 +18,25 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE CrearProducto
+CREATE PROCEDURE ComprobarPass
+	-- Add the parameters for the stored procedure here
+	@correo varchar(40) 
 	
-	@txt_tipo_prenda VARCHAR(8),
-	@txt_concepto_prenda VARCHAR(45),
-	@txt_marca_prenda VARCHAR(20),
-	@dec_precio_prenda DECIMAL(6,2),
-	@img_blanco_prenda VARCHAR(100),
-	@img_negro_prenda VARCHAR(100),
-	@txt_estado_prenda VARCHAR(13)
-
 AS
 BEGIN
-
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
+
+	DECLARE @llave nvarchar(128)
+	SET @llave = 'encryp';  
 	
-	INSERT INTO producto
-	([txt_tipo_prenda],
-	[txt_concepto_prenda],
-	[txt_marca_prenda],
-	[dec_precio_prenda],
-	[img_blanco_prenda],
-	[img_negro_prenda],
-	[txt_estado_prenda])
-	VALUES 
-	(@txt_tipo_prenda,
-	@txt_concepto_prenda,
-	@txt_marca_prenda,
-	@dec_precio_prenda,
-	@img_blanco_prenda,
-	@img_negro_prenda,
-	@txt_estado_prenda) 
-   
+
+
+	select *, Pass=CONVERT(varchar(max), 
+	DECRYPTBYPASSPHRASE(@llave ,cliente.txt_contraseña_cliente)) 
+	from cliente 
+	where txt_correo_cliente = @correo 
+    
 END
 GO

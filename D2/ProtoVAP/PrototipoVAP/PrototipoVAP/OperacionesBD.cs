@@ -9,9 +9,35 @@ namespace PrototipoVAP
 {
     public class OperacionesBD
     {
-        public bool VerificarUsuario()
+        //Usuarios---------------------
+        public bool VerificarUsuario(string correo, string pass)
         {
             bool existe = false;
+            DataSet dst = new DataSet();
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "ComprobarPass";
+                cmd.Parameters.Add("@correo", SqlDbType.VarChar).Value = correo;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                cmd.Connection = con;
+                con.Open();
+                sda.Fill(dst);
+                con.Close();
+            }
+            if (dst.Tables[0].Rows[0][6].ToString() == pass)
+            {
+                Globales.idCliente = Convert.ToInt32(dst.Tables[0].Rows[0][0]);
+                // Globales.nomCliente = dst.Tables[0].Rows[0][1].ToString();
+                // Globales.apeCliente = dst.Tables[0].Rows[0][2].ToString();
+                // Globales.nomCliente = dst.Tables[0].Rows[0][3].ToString();
+                // Globales.mailCliente = dst.Tables[0].Rows[0][4].ToString();
+
+                existe = true;
+            }
+            
 
             return existe;
         }
@@ -22,20 +48,38 @@ namespace PrototipoVAP
             return existe;
         }
 
-        public bool RegistrarUsuario()
+        public bool RegistrarUsuario(string nombre, string apellido, string tel, string correo, string pass)
         {
-            bool registrado = false;
+            bool registrado = false;           
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "CrearCliente";
+                cmd.Parameters.Add("@nombre_cliente", SqlDbType.VarChar).Value = nombre;
+                cmd.Parameters.Add("@apellidos_cliente", SqlDbType.VarChar).Value = apellido;
+                cmd.Parameters.Add("@celular_cliente", SqlDbType.BigInt).Value = tel;
+                cmd.Parameters.Add("@correo_cliente", SqlDbType.VarChar).Value = correo;
+                cmd.Parameters.Add("@contraseña_cliente", SqlDbType.VarChar).Value = pass;
 
+                cmd.Connection = con;
+                con.Open();
+                registrado=cmd.ExecuteReader().HasRows;
+                //int a = cmd.ExecuteNonQuery();
+                //if (a==1)
+                //    registrado = true;
+            }
             return registrado;
         }
 
-        public DataSet ObtenerInfoCliente()
+        public DataSet ObtenerInfoCliente(int idCliente)
         {
             string query = "select txt_nombre_cliente, " +
                             "txt_apellidos_cliente, " +
                             "int_celular_cliente, " +
                             "txt_correo_cliente " +
-                            "from cliente";
+                            "from cliente" +
+                            "where id_cliente ='"+idCliente+"'";
             SqlConnection cnx = new SqlConnection(Conexion.cstr);
             SqlDataAdapter adp = new SqlDataAdapter(query, cnx);
             DataSet dst = new DataSet();
@@ -46,17 +90,70 @@ namespace PrototipoVAP
         }
 
 
-        public bool EditarInfoUsuario()
+        public bool EditarInfoUsuario(int idcliente, string nom, string ape, string cel, string correo)
         {
             bool editado = false;
-
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "CrearProducto";
+                cmd.Parameters.Add("@idcliente", SqlDbType.Int).Value = idcliente;
+                cmd.Parameters.Add("@nomCliente", SqlDbType.VarChar).Value = nom;
+                cmd.Parameters.Add("@ApeCliente", SqlDbType.VarChar).Value = ape;
+                cmd.Parameters.Add("@celClietne", SqlDbType.BigInt).Value = cel;
+                cmd.Parameters.Add("@correoCliente", SqlDbType.VarChar).Value = correo;
+                
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                editado = true;
+            }
 
             return editado;
         }
 
-        public bool CrearProducto(string tipo, string concepto, string marca, int precio, byte[] imgB, byte[] imgN, string estado)
+        public DataSet ObtenerPedidosDelCliente(int idCliente)//pendiente
         {
-            bool ok = false;
+            string query = "select pedido.id_pedido,  " +
+                "pedido.d_fecha_pedido, pedido.dec_total_pedido, pedido.txt_estado_pedido," +
+                "variantes_producto.txt_color_prenda, variantes_producto.txt_talla_prenda, " +
+                "producto.txt_tipo_prenda, producto.txt_concepto_prenda,producto.txt_marca_prenda, producto.dec_precio_prenda " +
+                "from producto_seleccionado " +
+                "join pedido on producto_seleccionado.id_pedido = pedido.id_pedido " +
+                "join variantes_producto on producto_seleccionado.txt_id_variante = variantes_producto.txt_id_variane " +
+                "join producto on variantes_producto.id_prenda = producto.id_prenda " +
+                "where pedido.id_cliente = "+idCliente;
+
+            DataSet dst = new DataSet();
+            SqlConnection cnx = new SqlConnection(Conexion.cstr);
+            SqlDataAdapter adp = new SqlDataAdapter(query, cnx);
+
+            adp.Fill(dst);
+            cnx.Close();
+            return dst;
+        }
+
+        public bool CancelarPedido(int idClinete, int idPedido)
+        {
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "CancelarPedido";
+                cmd.Parameters.Add("@idPedido", SqlDbType.Int).Value = idClinete;
+                cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idPedido;
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return true;
+        }
+
+        //Cosas de productos------------------------------
+        public int CrearProducto(string tipo, string concepto, string marca, int precio, string imgB, string imgN, string estado)
+        {
+            int id = 0;
             using (SqlConnection con = new SqlConnection(Conexion.cstr))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -66,37 +163,71 @@ namespace PrototipoVAP
                 cmd.Parameters.Add("@txt_concepto_prenda", SqlDbType.VarChar).Value = concepto;
                 cmd.Parameters.Add("@txt_marca_prenda", SqlDbType.VarChar).Value = marca;
                 cmd.Parameters.Add("@dec_precio_prenda", SqlDbType.Decimal).Value = precio;
-                cmd.Parameters.Add("@img_blanco_prenda", SqlDbType.Image).Value = imgB;
-                cmd.Parameters.Add("@img_negro_prenda", SqlDbType.Image).Value = imgN;
+                cmd.Parameters.Add("@img_blanco_prenda", SqlDbType.VarChar).Value = imgB;
+                cmd.Parameters.Add("@img_negro_prenda", SqlDbType.VarChar).Value = imgN;
                 cmd.Parameters.Add("@txt_estado_prenda", SqlDbType.VarChar).Value = estado;
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+                string queryId = "select MAX(id_pedido) from pedido";
+                DataSet dst = new DataSet();
+                SqlDataAdapter adp = new SqlDataAdapter(queryId, con);
+                adp.Fill(dst);                
+                id = Convert.ToInt32(dst.Tables[0].Rows[0][0]);
+            }
+
+            return id;
+        }
+        
+        public DataSet ObtenerVariante(int idProducto)
+        {
+            string query = "Select * from variantes_producto where id_prenda = "+idProducto;
+
+            DataSet dst = new DataSet();
+            SqlConnection cnx = new SqlConnection(Conexion.cstr);
+            SqlDataAdapter adp = new SqlDataAdapter(query, cnx);
+
+            adp.Fill(dst);
+            cnx.Close();
+            return dst;
+        }
+
+
+
+        public bool CrearVariante(int idprenda, string color, string talla, int cantidad)
+        {
+            bool ok = false;
+            string idvariante = idprenda + talla + color;
+
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "CrearProducto";
+                cmd.Parameters.Add("@txt_color_prenda", SqlDbType.VarChar).Value = color;
+                cmd.Parameters.Add("@txt_talla_prenda", SqlDbType.VarChar).Value = talla;
+                cmd.Parameters.Add("@int_cantidad_prenda", SqlDbType.Int).Value = cantidad;
+                cmd.Parameters.Add("@idVariante", SqlDbType.VarChar).Value = idvariante;
+                cmd.Parameters.Add("@idprenda", SqlDbType.Int).Value = idprenda;
+
                 cmd.Connection = con;
                 con.Open();
                 cmd.ExecuteNonQuery();
                 ok = true;
             }
-
             return ok;
         }
 
-       public DataSet ObtenerCatalogo(string filtro, int tipo, int orden)//este no se si es mejor como datatable
+       public DataSet ObtenerCatalogo(string filtro)//este no se si es mejor como datatable
         {
-            string query = "SELECT * FROM producto";
+            string query = "SELECT * FROM producto where txt_estado_prenda = 'vigente' ";
             if (filtro != "")
             {
-                query += " where txt_concepto_prenda like '%"+filtro+ "%' or txt_tipo_prenda like '%"+filtro +"'";
+                query += " and txt_concepto_prenda like '%"+filtro+ "%' or txt_tipo_prenda like '%"+filtro +"'";
             }
-            switch (tipo)
-            {
-                case 0:                    
-                    break;
-                case 1:
-                    query += " where txt_tipo_prenda = 'sudadera'";
-                    break;
-                case 2:
-                    query += " where txt_tipo_prenda = 'playera'";
-                    break;
-            }
-            query += " where txt_estado_prenda = 'vigente'";
+            
+            
             //0 es decendente, 1 es ascendente
             //  query += (orden == 0) ? " order by dec_precio_prenda desc" : " order by dec_precio_prenda asc";
 
@@ -109,18 +240,15 @@ namespace PrototipoVAP
             return dst;
         }
 
-        public DataSet ObtenerInventario(string filtro)//este no se si es mejor como datatable
+        public DataSet ObtenerInventario(string filtro)
         {
             string query = "select producto.id_prenda as 'ID', " +
                 "producto.txt_tipo_prenda as 'Tipo'," +
                 "producto.txt_concepto_prenda as 'Concepto', " +
                 "producto.txt_marca_prenda as 'Marca', " +
-                "variantes_producto.txt_color_prenda as 'Color', " +
-                "variantes_producto.txt_talla_prenda as 'Talla', " +
-                "variantes_producto.int_cantidad_prenda as 'Cantidad'," +
-                "producto.txt_estado_prenda as 'Estado'" +
-                "from producto join variantes_producto " +
-                "on producto.id_prenda = variantes_producto.id_prenda";
+                "producto.txt_estado_prenda as 'Estado'," +
+                "producto.dec_precio_prenda as 'Precio' " +
+                "from producto;" ;
 
             if (filtro != "") 
             { query += " where producto.txt_concepto_prenda like '%" + filtro + "%' or producto.id_prenda = "+ filtro ; }
@@ -133,7 +261,7 @@ namespace PrototipoVAP
 
             return dst;
         }
-        public DataSet ObtenerPedidosClientes(string filtro)//este no se si es mejor como datatable
+        public DataSet ObtenerPedidosClientes(string filtro)
         {
             string query = "";
 
@@ -145,7 +273,7 @@ namespace PrototipoVAP
             cnx.Close();
             return dst;
         }
-        public DataSet ObtenerHistorialVentas(string filtro)//este no se si es mejor como datatable
+        public DataSet ObtenerHistorialVentas(string filtro)
         {
             string query = "";
 
@@ -156,6 +284,45 @@ namespace PrototipoVAP
             adp.Fill(dst);
             cnx.Close();
             return dst;
+        }
+
+        //Carrito--------------
+        public bool CreaVentaNueva(int idClente, string fecha, float total)
+        {
+            bool ok = false;
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "CreaVentaNueva";
+                cmd.Parameters.Add("@fecha_pedido", SqlDbType.Date).Value = fecha;
+                cmd.Parameters.Add("@total_pedido", SqlDbType.Decimal).Value = total;
+                cmd.Parameters.Add("@id_cliente", SqlDbType.Int).Value = idClente;
+
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                ok = true;
+            }
+            return ok;
+        }
+        public bool AgrgarProductoVenta(int cantidad, string variante)
+        {
+            bool ok = false;
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AgrgarProductoVenta";
+                cmd.Parameters.Add("@cantidad", SqlDbType.Int).Value = cantidad;
+                cmd.Parameters.Add("@idVariante", SqlDbType.VarChar).Value = variante;
+                
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+                ok = true;
+            }
+            return ok;
         }
 
 

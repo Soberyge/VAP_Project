@@ -8,6 +8,7 @@ namespace PrototipoVAP
     public class Globales
     {
         //cliente logeado
-
+        public static int idCliente=1;
+        
     }
 }
