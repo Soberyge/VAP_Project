@@ -28,13 +28,14 @@ namespace PrototipoVAP
                 con.Close();
             }
             if (dst.Tables[0].Rows[0][6].ToString() == pass)
-            { 
+            {
                 cliente.IdCliente = Convert.ToInt32(dst.Tables[0].Rows[0][0]);
                 cliente.Nombre = dst.Tables[0].Rows[0][1].ToString();
                 cliente.Apellidos = dst.Tables[0].Rows[0][2].ToString();
                 cliente.Celular = Convert.ToInt64(dst.Tables[0].Rows[0][3]);
                 cliente.Correo = dst.Tables[0].Rows[0][4].ToString();
             }
+            else cliente = null;
 
             return cliente;
         }
@@ -52,17 +53,16 @@ namespace PrototipoVAP
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "CrearProducto";
-                cmd.Parameters.Add("@nombre_cliente", SqlDbType.Int).Value = nombre;
+                cmd.CommandText = "CrearCliente";
+                cmd.Parameters.Add("@nombre_cliente", SqlDbType.VarChar).Value = nombre;
                 cmd.Parameters.Add("@apellidos_cliente", SqlDbType.VarChar).Value = apellido;
-                cmd.Parameters.Add("@celular_cliente", SqlDbType.VarChar).Value = tel;
-                cmd.Parameters.Add("@correo_cliente", SqlDbType.BigInt).Value = correo;
+                cmd.Parameters.Add("@celular_cliente", SqlDbType.BigInt).Value = tel;
+                cmd.Parameters.Add("@correo_cliente", SqlDbType.VarChar).Value = correo;
                 cmd.Parameters.Add("@contraseña_cliente", SqlDbType.VarChar).Value = pass;
 
                 cmd.Connection = con;
                 con.Open();
-                cmd.ExecuteNonQuery();
-                registrado = true;
+                registrado = cmd.ExecuteReader().HasRows;
             }
             return registrado;
         }
@@ -73,8 +73,8 @@ namespace PrototipoVAP
                             "txt_apellidos_cliente, " +
                             "int_celular_cliente, " +
                             "txt_correo_cliente " +
-                            "from cliente" +
-                            "where id_cliente ='" + idCliente + "'";
+                            "from cliente " +
+                            "where id_cliente = " + idCliente;
             SqlConnection cnx = new SqlConnection(Conexion.cstr);
             SqlDataAdapter adp = new SqlDataAdapter(query, cnx);
             DataSet dst = new DataSet();
@@ -92,7 +92,7 @@ namespace PrototipoVAP
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "CrearProducto";
+                cmd.CommandText = "EditarInfCliente";
                 cmd.Parameters.Add("@idcliente", SqlDbType.Int).Value = idcliente;
                 cmd.Parameters.Add("@nomCliente", SqlDbType.VarChar).Value = nom;
                 cmd.Parameters.Add("@ApeCliente", SqlDbType.VarChar).Value = ape;
@@ -110,7 +110,15 @@ namespace PrototipoVAP
 
         public DataSet ObtenerPedidosDelCliente(int idCliente)//pendiente
         {
-            string query = "Select * from variantes_producto where id_prenda = ";
+            string query = "select pedido.id_pedido,  " +
+                "pedido.d_fecha_pedido, pedido.dec_total_pedido, pedido.txt_estado_pedido," +
+                "variantes_producto.txt_color_prenda, variantes_producto.txt_talla_prenda, " +
+                "producto.txt_tipo_prenda, producto.txt_concepto_prenda,producto.txt_marca_prenda, producto.dec_precio_prenda " +
+                "from producto_seleccionado " +
+                "join pedido on producto_seleccionado.id_pedido = pedido.id_pedido " +
+                "join variantes_producto on producto_seleccionado.txt_id_variante = variantes_producto.txt_id_variane " +
+                "join producto on variantes_producto.id_prenda = producto.id_prenda " +
+                "where pedido.id_cliente = " + idCliente;
 
             DataSet dst = new DataSet();
             SqlConnection cnx = new SqlConnection(Conexion.cstr);
@@ -119,6 +127,22 @@ namespace PrototipoVAP
             adp.Fill(dst);
             cnx.Close();
             return dst;
+        }
+
+        public bool CancelarPedido(int idClinete, int idPedido)
+        {
+            using (SqlConnection con = new SqlConnection(Conexion.cstr))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "CancelarPedido";
+                cmd.Parameters.Add("@idPedido", SqlDbType.Int).Value = idPedido;
+                cmd.Parameters.Add("@idCliente", SqlDbType.Int).Value = idClinete;
+                cmd.Connection = con;
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return true;
         }
 
         //Cosas de productos------------------------------

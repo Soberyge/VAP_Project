@@ -16,6 +16,18 @@ namespace PrototipoVAP
         private string imgNegro;
         private string imgBlanco;
         private ArrayList variantes;
+        private Variantes variante;
+
+        public Producto(string concepto, string tipo, string marca, int precio, Variantes variante)
+        {
+
+            this.concepto = concepto;
+            this.precio = precio;
+            this.tipo = tipo;
+            this.marca = marca;
+            this.variante = variante;
+
+        }
 
         public Producto(int id, string concepto, string tipo, string marca, decimal precio, string imgBlanco, string imgNegro)
         {
@@ -48,6 +60,7 @@ namespace PrototipoVAP
         public string ImgNegro { get => imgNegro; set => imgNegro = value; }
         public string ImgBlanco { get => imgBlanco; set => imgBlanco = value; }
         public ArrayList Variantes { get => variantes; set => variantes = value; }
+        public Variantes Variante { get => variante; set => variante = value; }
 
         public bool GuardarProducto()
         {

@@ -12,6 +12,11 @@ namespace PrototipoVAP
         private string color;
         private int cantidad;
 
+        public Variantes(string talla, string color)
+        {
+            this.talla = talla;
+            this.color = color;
+        }
         public Variantes()
         {
 

@@ -12,9 +12,8 @@ const a_perfil = document.getElementById('a_perfil');
 const sign_off = document.getElementById('sign_off');
 const ddiInSe = document.getElementById('ddiInSe');
 
-
-//Al cargar el documento renderiza si hay o no cliente logueado
-$(document).ready(function () {
+//Al cargar el documento busca si hay o no cliente logueado
+function cargaCliente() {
     asyncAjax("GetCliente").then((data) => {
         cliente = data.d;
         if (cliente !== "") {
@@ -27,19 +26,21 @@ $(document).ready(function () {
             ddiInSe.style.display = "none";
         } else ddiInSe.style.display = "block";
     })
-})
+}
+
+cargaCliente()
 
 //Petición AJAX para traer al cliente si es que esta logueado
 async function asyncAjax(metodo) {
     let result
     try {
-        result = $.ajax({
+        result = await $.ajax({
             type: "POST",
             url: "Catalogo.aspx/" + metodo,
             data: null,
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            async: true,            
+            async: true,
         });
         return result
     } catch (error) {

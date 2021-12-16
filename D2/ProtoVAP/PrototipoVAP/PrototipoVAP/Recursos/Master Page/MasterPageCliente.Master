@@ -16,6 +16,7 @@
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
+    <%--VARIABLE PARA ALMACENAR AL CLIENTE--%>
     <script type="text/javascript">
         var cliente = "";
     </script>
@@ -74,7 +75,7 @@
             <div class="menu">
                 <a href="../../Catalogo.aspx" id="a_catalogo" class="p-3"><i class="bi bi-bag mr-2 lead"></i> Catalogo</a>
                 <a href="../../Carrito.aspx" id="a_carrito" class="p-3"><i class="bi bi-cart mr-2 lead"></i> Carrito</a>
-                <a href="../../Perfil.aspx" id="a_perfil" class="p-3"><i class="bi bi-person mr-2 lead"></i> Perfil</a>
+                <a href="../../Perfil.aspx" id="a_perfil" class="p-3" ><i class="bi bi-person mr-2 lead"></i> Perfil</a>
                 <a href="../../Catalogo.aspx" onclick="CerrarSesion()" id="sign_off" class="p-3"><i class="bi bi-door-open mr-2 lead"></i> Cerrar Sesión</a>
             </div>
         </div>
@@ -102,7 +103,10 @@
                                     <label for="txtContraseña">Contraseña</label>
                                 </div>
                                 <div class="text-center">
-                                    <asp:Button runat="server" CssClass="btn btn-info" ID="btnIngresar" Text="Ingresar" OnClick="btnIngresar_Click"/>
+                                    <asp:Button runat="server" CssClass="btn btn-info" ID="btnIngresar" Text="Ingresar"  OnClick="btnIngresar_Click"/>
+                                </div>
+                                <div class="text-center">
+                                    <asp:Label style="color:red" runat="server" id="lblNoExiste"></asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +135,7 @@
                                     <label for="txtContraseñaR">Contraseña</label>
                                 </div>
                                 <div class="text-center">
-                                    <asp:Button runat="server" CssClass="btn btn-warning" ID="btnRegistro" Text="Registrarse" OnClick="btnRegistro_Click"/>
+                                    <asp:Button runat="server" CssClass="btn btn-warning" ID="btnRegistro" Text="Registrarse"  OnClick="btnRegistro_Click"/>
                                 </div>
                             </div>
                         </div>

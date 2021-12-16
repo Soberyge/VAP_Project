@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -24,25 +25,78 @@ namespace PrototipoVAP
             Response.Redirect("Catalogo.aspx");
         }
 
-        protected void btnIngresar_Click(object sender, EventArgs e)
+        protected void Login()
         {
             Cliente cliente = op.VerificarUsuario(txtCorreo.Text, txtContraseña.Text);
             if (cliente != null)
             {
-                Session["IdCliente"] = cliente.IdCliente;
                 //OBJETO A JSON
-                Globales.clienteString = JsonConvert.SerializeObject(cliente, Formatting.Indented);
+                Globales.clienteString = JsonConvert.SerializeObject(cliente, Formatting.Indented);                
                 Response.Redirect("Catalogo.aspx");
             }
             else
             {
-
+                Response.Write("<script>alert('No se encontro al usuario');</script>");
             }
+        }
+
+        protected void btnIngresar_Click(object sender, EventArgs e)
+        {
+            if (isValidEmail(txtCorreo.Text))
+            {
+                Login();
+                LimpiaCampos();
+            }
+            else
+            {
+                Response.Write("<script>alert('El correo no tiene el fomrato correcto');</script>");
+            }
+
         }
 
         protected void btnRegistro_Click(object sender, EventArgs e)
         {
-
+            OperacionesBD op = new OperacionesBD();
+            if (isValidEmail(txtCorreoR.Text))
+            {
+                bool registrado = op.RegistrarUsuario(txtNombre.Text, txtApellidos.Text, txtCelular.Text, txtCorreoR.Text, txtContraseñaR.Text);
+                if (registrado)
+                {
+                    Login();
+                    LimpiaCampos();
+                }
+                else
+                {
+                    LimpiaCampos();
+                    Response.Write("<script>alert('Este correo ya esta ocupado por otro usuario');</script>"); 
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('El correo no tiene el fomrato correcto');</script>"); 
+            }
         }
+
+        protected void LimpiaCampos()
+        {
+            txtCorreo.Text = "";
+            txtContraseña.Text = "";
+            txtNombre.Text = "";
+            txtApellidos.Text = "";
+            txtCorreoR.Text = "";
+            txtContraseñaR.Text = "";
+            txtCelular.Text = "";
+        }
+
+        public bool isValidEmail(string inputEmail)
+        {
+            string strRegex = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+                return (true);
+            else
+                return (false);
+        }
+
     }
 }

@@ -4,7 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="tituloPedidos" class="row mb-3"></div>
     <div id="pedidos" class=""><%--PEDIDOS--%></div>
-
+     <%--JQuery--%>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <%--JS--%>
     <script type="text/javascript">
         const pedidos = <%= ListaPedidos %>;

@@ -75,7 +75,7 @@ const renderProducts = (filtrados) => {
                 <img src="${producto.ImgNegro}" class="card-img-top" alt="<image failed>">
                 <div class="card-body text-center">
                     <h5 class="card-title">$MXN${producto.Precio}</h5>
-                    <p class="card-text">${producto.Tipo} - ${producto.Concepto}</p>
+                    <p class="card-text">${producto.Tipo} - ${producto.Concepto} - ${producto.Marca}</p>
                 </div>
             </div>`;
 
@@ -112,7 +112,7 @@ document.attachEvent = function (evt, q, fn) {
 document.attachEvent('click', '.a', function () {
     idProducto = this.id;
     const producto = encuentraProducto();
-    concepto.innerHTML = `${producto.Tipo} - ${producto.Concepto}`;
+    concepto.innerHTML = `${producto.Tipo} - ${producto.Concepto} - ${producto.Marca}`;
     precio.innerHTML = `$MXN${producto.Precio}`;
     imgModal.src = producto.ImgNegro;
 });
@@ -176,7 +176,7 @@ function buscarVariacion() {
         const producto = encuentraProducto();
         variante = producto.Variantes.find(v => v.Talla === tallaEscogida && v.Color === colorEscogido);
 
-        if (variante === undefined) {
+        if (variante === undefined || variante.Cantidad == 0) {
             existencias.innerHTML = `Sin Existencias`;
             carritoBtn.disabled = true;
         }            

@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <%--Estructura del Perfil--%>
     <div id="perfil-content">
         <div class="form-group">            
             <div class="mb-3">
@@ -28,40 +30,42 @@
                 </div>
                 <div class="col-6 text-center">
                     <button type="button" class="btn btn-primary" onclick="Editar()" id="btnEditarPerfil">Editar</button>
-                    <asp:Button runat="server" style="display:none;" CssClass="btn btn-success" ID="btnGuardarInfo" Text="Guardar" OnClientClick="return validarCampos()" OnClick="btnGuardarInfo_Click" />
+                    <button style="display:none;" class="btn btn-success" id="btnGuardarInfo" onclick="Guardar()">Guardar</button>
                 </div>
             </div>            
         </div>
     </div>    
 
     <%--JS--%>
-    <script type="text/javascript">
+    <script defer="defer">
+
         const nombre = document.getElementById('<%=txtNombreC.ClientID%>');
         const apellidos = document.getElementById('<%=txtApellidosC.ClientID%>');
         const celular = document.getElementById('<%=txtCelularC.ClientID%>');
         const correo = document.getElementById('<%=txtCorreoC.ClientID%>');
         const btnCancelar = document.getElementById('btnCancelarEdicion');
         const btnEditar = document.getElementById('btnEditarPerfil');
-        const btnGuardar = document.getElementById('<%=btnGuardarInfo.ClientID%>');
+        const btnGuardar = document.getElementById('btnGuardarInfo');
 
         //funcion para ingresar las propiedades del cliente en los textbox
 
-        function renderPerfil() {
-            const clienteLocal = JSON.parse(cliente);
-
-            nombre.value = clienteLocal.Nombre;
-            nombre.readOnly = true;
-            apellidos.value = clienteLocal.Apellidos;
-            apellidos.readOnly = true;
-            celular.value = clienteLocal.Celular;
-            celular.readOnly = true;
-            correo.value = clienteLocal.Correo;
-            correo.readOnly = true;
+        const renderPerfil = () => {
+            if (cliente !== "") {
+                const clienteLocal = JSON.parse(cliente);
+                nombre.value = clienteLocal.Nombre;
+                nombre.textContent = clienteLocal.Nombre;
+                nombre.readOnly = true;
+                apellidos.value = clienteLocal.Apellidos;
+                apellidos.readOnly = true;
+                celular.value = clienteLocal.Celular;
+                celular.readOnly = true;
+                correo.value = clienteLocal.Correo;
+                correo.readOnly = true;
+            }            
         }
 
         //acciones a realizar al dar clic en el boton editar
         function Editar() {
-            renderPerfil()
             nombre.readOnly = false;
             apellidos.readOnly = false;
             celular.readOnly = false;
@@ -79,19 +83,48 @@
             btnEditar.style.display = "block";
         }
 
-        function validarCampos() {
-            let res = false
+        function Guardar() {
             if (
                 nombre.value !== "" &&
                 apellidos.value !== "" &&
                 celular.value !== "" &&
                 correo.value !== ""
-            ) res = true
-            else {
-                alert("Campos necesarios")
-            }
-            return res
+            ) {
+                let data = {
+                    nombre: nombre.value,
+                    apellidos: apellidos.value,
+                    celular: celular.value,
+                    correo: correo.value
+                }
+                ActualizarCliente(data).then((data) => {
+                    alert(data.d)
+                    return false;
+                })
+            } else {
+                alert("Todos los campos son necesarios")
+            } 
         }
+
+        async function ActualizarCliente(data) {
+            let result
+            try {
+                result = await $.ajax({
+                    type: "POST",
+                    url: "Perfil.aspx/GuardarInfo",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: true
+                });
+                return result
+            } catch (error) {
+                alert(error)
+            }
+        }
+
+        let timerId = setInterval(renderPerfil, 500);
+        setTimeout(() => clearInterval(timerId), 2000);
+
     </script>
 
 </asp:Content>

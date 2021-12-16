@@ -1,71 +1,20 @@
 ﻿const pedidosDiv = document.getElementById('pedidos');
 const tiuloPedidos = document.getElementById('tituloPedidos');
 
-const pedidoArray = [
-    {
-        idPedido: 1,
-        fechaPedido: '2021-12-12',
-        totalPedido: 400.00,
-        estadoPedido: 'empacado',
-        productosSeleccionados: [
-            {
-                talla: "G",
-                color: "negro",
-                tipo: "sudadera",
-                concepto: "Rocky1",
-                marca: "hc",
-                precio: 200
-            },
-            {
-                talla: "EG",
-                color: "blanco",
-                tipo: "sudadera",
-                concepto: "Rocky2",
-                marca: "hc",
-                precio: 200
-            }
-        ]
-    },
-    {
-        idPedido: 2,
-        fechaPedido: '2021-12-14',
-        totalPedido: 500.00,
-        estadoPedido: 'pendiente',
-        productosSeleccionados: [
-            {
-                talla: "CH",
-                color: "negro",
-                tipo: "sudadera",
-                concepto: "Rocky1",
-                marca: "hc",
-                precio: 250
-            },
-            {
-                talla: "M",
-                color: "blanco",
-                tipo: "sudadera",
-                concepto: "Rocky2",
-                marca: "hc",
-                precio: 250
-            }
-        ]
-    }
-]
-
 //Funcion para imprimir pedidos en pantalla
 const renderPedidos = () => {
-    if (pedidoArray.length > 0) {
+    if (pedidos.length > 0) {
         tiuloPedidos.innerHTML = '<h1>Mis Pedidos</h1>';
         pedidosDiv.innerHTML = '';
 
-        pedidoArray.forEach(pedido => {
+        pedidos.forEach(pedido => {
             pedidosDiv.innerHTML += `
                 <div class="card text-white bg-warning mb-3" style="width: 100%;">
                     <div class="card-header row">
-                        <div class="col-3">Pedido - ${pedido.idPedido}</div>
-                        <div class="col-3">Total: $MXN${pedido.totalPedido}</div>
-                        <div class="col-3">Fecha: ${pedido.fechaPedido}</div>
-                        <div class="col-3">Estado: ${pedido.estadoPedido}</div>
+                        <div class="col-3">Pedido - ${pedido.IdPedido}</div>
+                        <div class="col-3">Total: $MXN${pedido.Total}</div>
+                        <div class="col-3">Fecha: ${pedido.Fecha}</div>
+                        <div class="col-3">Estado: ${pedido.Estado}</div>
                     </div>
                     <div class="card-body row">
                         <div class="col-9"></div>
@@ -73,18 +22,18 @@ const renderPedidos = () => {
                     </div>
                 </div>
             `;
-            pedido.productosSeleccionados.forEach(producto => {
+            pedido.Producto.forEach(producto => {
                 pedidosDiv.children[pedidosDiv.childElementCount - 1].children[1].children[0].innerHTML += `
                     <div class="mb-4">
-                        <h4 class="card-title" style="text-align: left!important;">${producto.tipo} ${producto.concepto}-${producto.marca} - $MXN${producto.precio}</h4>
-                        <h5 class="card-text">color ${producto.color} - talla ${producto.talla}</h5>
+                        <h4 class="card-title" style="text-align: left!important;">${producto.Tipo} ${producto.Concepto}-${producto.Marca} - $MXN${producto.Precio}</h4>
+                        <h5 class="card-text">color ${producto.Variante.Color} - talla ${producto.Variante.Talla}</h5>
                     </div>
                 `;
             })
 
-            if (pedido.estadoPedido === "pendiente" || pedido.estadoPedido === "empacado") {
+            if (pedido.Estado === "pendiente" || pedido.Estado === "empacado") {
                 let cancelarBtn = document.createElement('button');
-                cancelarBtn.setAttribute('id', pedido.idPedido);
+                cancelarBtn.setAttribute('id', pedido.IdPedido);
                 cancelarBtn.classList.add('b', 'btn', 'btn-danger');
                 cancelarBtn.textContent = "Cancelar Pedido";
                 pedidosDiv.children[pedidosDiv.childElementCount - 1].children[1].children[1].appendChild(cancelarBtn);
@@ -108,14 +57,13 @@ document.attachEvent = function (evt, q, fn) {
 
 //Funcion del evento click del boton Ver Detalles
 document.attachEvent('click', '.b', function (event) {
-    event.preventDefault();
     let id = this.id;
     if (confirm(`Seguro que deseas cancelar el pedido: ${id} ?`)) {
         let data = { idPedido: id }
-        CancelarPedido(data).then((data) => {
+        CancelarPedido(data).then((data) => {            
             alert(data.d)
-            renderPedidos()
-        })
+            return false;
+        })        
     }
 });
 
@@ -136,6 +84,11 @@ async function CancelarPedido(data) {
         alert(error)
     }
 }
+
+//funcion para recargar la pagina una vez que las peticiones ajax se hayan terminado
+$(document).ajaxStop(function () {
+    window.location.reload();
+});
 
 //Llamada a la funcion para imprimir pedidos
 renderPedidos()

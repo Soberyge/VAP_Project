@@ -82,7 +82,6 @@
     <Content Include="Recursos\js\Catalogo.js" />
     <Content Include="Recursos\js\PedidoC.js" />
     <Content Include="Recursos\js\main.js" />
-    <Content Include="Recursos\js\Perfil.js" />
     <Content Include="Ventas.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -94,7 +93,6 @@
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Carrito.cs" />
     <Compile Include="Catalogo.aspx.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -105,6 +103,7 @@
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\Globales.cs" />
+    <Compile Include="Clases\Pedido.cs" />
     <Compile Include="Inventario.aspx.cs">
       <DependentUpon>Inventario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
