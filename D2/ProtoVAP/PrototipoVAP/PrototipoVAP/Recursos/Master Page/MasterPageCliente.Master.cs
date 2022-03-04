@@ -25,9 +25,9 @@ namespace PrototipoVAP
             Response.Redirect("Catalogo.aspx");
         }
 
-        protected void Login()
+        protected void Login(string mail, string pass)
         {
-            Cliente cliente = op.VerificarUsuario(txtCorreo.Text, txtContraseña.Text);
+            Cliente cliente = op.VerificarUsuario(mail, pass);
             if (cliente != null)
             {
                 //OBJETO A JSON
@@ -44,7 +44,7 @@ namespace PrototipoVAP
         {
             if (isValidEmail(txtCorreo.Text))
             {
-                Login();
+                Login(txtCorreo.Text, txtContraseña.Text);
                 LimpiaCampos();
             }
             else
@@ -62,7 +62,7 @@ namespace PrototipoVAP
                 bool registrado = op.RegistrarUsuario(txtNombre.Text, txtApellidos.Text, txtCelular.Text, txtCorreoR.Text, txtContraseñaR.Text);
                 if (registrado)
                 {
-                    Login();
+                    Login(txtCorreoR.Text, txtContraseñaR.Text);
                     LimpiaCampos();
                 }
                 else

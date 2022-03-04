@@ -71,7 +71,7 @@ const renderProducts = (filtrados) => {
         filtrados.forEach(producto => {            
 
             catalogo.innerHTML += `
-             <div class="card" style="width: 18rem;">
+             <div class="card" style="width: 18rem; height: 40rem">
                 <img src="${producto.ImgNegro}" class="card-img-top" alt="<image failed>">
                 <div class="card-body text-center">
                     <h5 class="card-title">$MXN${producto.Precio}</h5>
