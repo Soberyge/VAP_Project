@@ -264,3 +264,86 @@
 .btn {
     border-radius: 30px !important;
 }
+
+#catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.contenedor-productos {
+    background: #8f6565;
+    width: 23%;
+    border-radius: 3%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.contenedor-productos .imagen {
+    width: 100%;
+    overflow:hidden;
+}
+
+.contenedor-productos .imagen img {
+    width: 100%;
+    vertical-align: top;
+}
+
+.contenedor-productos .descripcion {
+    min-height:100px;
+    width: 100%;
+    padding: 10px 20px;
+    color: #000;
+    background: #fff;
+}
+
+.contenedor-productos .descripcion h3 {
+    font-size: 20px;
+    inline-size:20px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.contenedor-productos .descripcion p {
+    margin: 0;
+    line-height:20px;
+}
+
+.contenedor-productos .boton {
+    text-decoration:none;
+    color: #fff;
+    font-size: 14px;
+    line-height: 14px;
+    background: #0c0c0c;
+    padding: 16px 20px;
+    margin: 10px 0;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+}
+
+.contenedor-productos .boton:hover {
+    background: #2e2c2c;
+}
+
+@media screen and (max-width: 950px) {
+    .contenedor-productos {
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .contenedor-productos {
+        width: 47%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .contenedor-productos {
+        width: 94%;
+    }
+}

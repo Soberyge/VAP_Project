@@ -71,21 +71,23 @@ const renderProducts = (filtrados) => {
         filtrados.forEach(producto => {            
 
             catalogo.innerHTML += `
-             <div class="card" style="width: 18rem; height: 40rem">
-                <img src="${producto.ImgNegro}" class="card-img-top" alt="<image failed>">
-                <div class="card-body text-center">
-                    <h5 class="card-title">$MXN${producto.Precio}</h5>
-                    <p class="card-text">${producto.Tipo} - ${producto.Concepto} - ${producto.Marca}</p>
+             <div class="contenedor-productos">
+                <div class="imagen">
+                    <img src="${producto.ImgNegro}" alt="<image failed>">
+                </div>
+                <div class="descripcion">
+                    <h3>$MXN${producto.Precio}</h3>
+                    <p>${producto.Tipo} - ${producto.Concepto} - ${producto.Marca}</p>
                 </div>
             </div>`;
 
             let detallesBtn = document.createElement('a');
             detallesBtn.setAttribute('id', producto.Id);
-            detallesBtn.classList.add('a', 'btn', 'btn-primary');
+            detallesBtn.classList.add('a', 'boton');
             detallesBtn.textContent = "Ver detalles";
             detallesBtn.setAttribute('data-bs-toggle', 'modal');
             detallesBtn.setAttribute('data-bs-target', '#staticBackdrop');
-            catalogo.children[catalogo.childElementCount - 1].children[1].appendChild(detallesBtn);
+            catalogo.children[catalogo.childElementCount - 1].appendChild(detallesBtn);
         });
 
         if (!ordenando) productos_filtrados = filtrados.slice();
