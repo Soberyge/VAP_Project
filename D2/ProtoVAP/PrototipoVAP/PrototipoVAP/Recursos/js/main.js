@@ -36,7 +36,7 @@ async function asyncAjax(metodo) {
     try {
         result = await $.ajax({
             type: "POST",
-            url: "Catalogo.aspx/" + metodo,
+            url: "Index.aspx/" + metodo,
             data: null,
             contentType: "application/json; charset=utf-8",
             dataType: "json",

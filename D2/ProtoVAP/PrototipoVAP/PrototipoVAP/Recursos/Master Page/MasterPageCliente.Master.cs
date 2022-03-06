@@ -22,7 +22,7 @@ namespace PrototipoVAP
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             Globales.busqueda = txtBusqueda.Text;
-            Response.Redirect("Catalogo.aspx");
+            Response.Redirect("Index.aspx");
         }
 
         protected void Login(string mail, string pass)
@@ -32,7 +32,7 @@ namespace PrototipoVAP
             {
                 //OBJETO A JSON
                 Globales.clienteString = JsonConvert.SerializeObject(cliente, Formatting.Indented);                
-                Response.Redirect("Catalogo.aspx");
+                Response.Redirect("Index.aspx");
             }
             else
             {

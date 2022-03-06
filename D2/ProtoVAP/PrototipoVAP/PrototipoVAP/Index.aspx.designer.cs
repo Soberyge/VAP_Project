@@ -11,7 +11,7 @@ namespace PrototipoVAP
 {
 
 
-    public partial class Catalogo
+    public partial class Index
     {
     }
 }

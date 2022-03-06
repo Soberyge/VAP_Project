@@ -7,7 +7,7 @@ using System.Data;
 
 namespace PrototipoVAP
 {
-    public partial class Catalogo : System.Web.UI.Page
+    public partial class Index : System.Web.UI.Page
     {        
         ArrayList p = new ArrayList();
         

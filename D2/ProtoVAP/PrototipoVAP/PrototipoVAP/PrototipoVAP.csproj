@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Carrito.aspx" />
-    <Content Include="Catalogo.aspx" />
+    <Content Include="Index.aspx" />
     <Content Include="Inventario.aspx" />
     <Content Include="PedidosAdministrador.aspx" />
     <Content Include="PedidosCliente.aspx" />
@@ -93,12 +93,12 @@
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Catalogo.aspx.cs">
-      <DependentUpon>Catalogo.aspx</DependentUpon>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Catalogo.aspx.designer.cs">
-      <DependentUpon>Catalogo.aspx</DependentUpon>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Conexion.cs" />
