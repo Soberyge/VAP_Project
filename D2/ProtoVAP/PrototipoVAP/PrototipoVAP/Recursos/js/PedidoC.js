@@ -55,7 +55,7 @@ document.attachEvent = function (evt, q, fn) {
     });
 };
 
-//Funcion del evento click del boton Ver Detalles
+//Funcion del evento click del boton cancelar pedido
 document.attachEvent('click', '.b', function (event) {
     let id = this.id;
     if (confirm(`Seguro que deseas cancelar el pedido: ${id} ?`)) {
